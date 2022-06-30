@@ -275,4 +275,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+gitflow_cheatsheet.md
+
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,node,react,visualstudiocode
