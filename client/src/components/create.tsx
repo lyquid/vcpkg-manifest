@@ -10,14 +10,14 @@ export default function Create() {
   const navigate = useNavigate();
  
   // These methods will update the state properties.
-  function updateForm(value) {
+  function updateForm(value: any) {
     return setForm((prev) => {
       return { ...prev, ...value };
     });
   }
  
   // This function will handle the submission.
-  async function onSubmit(e) {
+  async function onSubmit(e: any) {
     e.preventDefault();
   
     // When a post request is sent to the create url, we'll add a new record to the database.
