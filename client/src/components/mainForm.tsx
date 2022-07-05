@@ -71,7 +71,7 @@ function MainForm(): JSX.Element {
           <input type="number" name="count" className="form-control" onChange={handleChange} value={formData.count || ''} step="1"/>
 
           <label className="form-check-label">Gift Wrap</label>
-          <input type="checkbox" name="gift-wrap" className="form-check" onChange={handleChange} checked={formData['gift-wrap'] || false}/>
+          <input type="checkbox" name="gift-wrap" className="form-check" onChange={handleChange} checked={formData['gift-wrap'] || false} disabled={formData.apple !== 'fuji'}/>
 
           <button type="submit" className="btn btn-primary">Send</button>
         </div>
