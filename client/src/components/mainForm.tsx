@@ -5,6 +5,14 @@ import 'bootstrap';
 // https://www.digitalocean.com/community/tutorials/how-to-build-forms-in-react
 
 const formReducer = (state: any, event: any) => {
+  if (event.reset) {
+    return {
+      apple: '',
+      count: 0,
+      appName: '',
+      'gift-warp': false
+    };
+  }
   return {
     ...state,
     [event.name]: event.value
@@ -12,7 +20,7 @@ const formReducer = (state: any, event: any) => {
 }
 
 function MainForm(): JSX.Element {
-  const [formData, setFormData] = useReducer(formReducer, {});
+  const [formData, setFormData] = useReducer(formReducer, {count: 100});
   const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>): void => {
@@ -29,40 +37,45 @@ function MainForm(): JSX.Element {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     setSubmitting(true);
-    setTimeout(() => { setSubmitting(false); }, 2000);
+    setTimeout(() => {
+      setSubmitting(false);
+      setFormData({reset: true});
+    }, 2000);
   }
 
   return(
     <form onSubmit={handleSubmit}>
-      {submitting &&
-      <div className="alert alert-primary" role="alert">
-        Submitting...
-         <ul>
-           {Object.entries(formData).map(([name, value]: any) => (
-             <li key={name}><strong>{name}</strong>: {value.toString()}</li>
-           ))}
-         </ul>
-      </div>}
-      <div className="mb-3">
-        <label className="form-label">App name:</label>
-        <input name="app-name" className="form-control" onChange={handleChange}/>
+      <fieldset disabled={submitting}>
+        {submitting &&
+        <div className="alert alert-primary" role="alert">
+          Submitting...
+          <ul>
+            {Object.entries(formData).map(([name, value]: any) => (
+              <li key={name}><strong>{name}</strong>: {value.toString()}</li>
+            ))}
+          </ul>
+        </div>}
+        <div className="mb-3">
+          <label className="form-label">App name:</label>
+          <input name="appName" className="form-control" onChange={handleChange} value={formData.appName || ''}/>
 
-        <label className="form-label">Apples</label>
-        <select name="apple" className="form-select" onChange={handleChange}>
-          <option value="">--Please choose an option--</option>
-          <option value="fuji">Fuji</option>
-          <option value="mori">Mori</option>
-          <option value="honey-crisp">Honey Crisp</option>
-        </select>
+          <label className="form-label">Apples</label>
+          <select name="apple" className="form-select" onChange={handleChange} value={formData.apple || ''}>
+            <option value="">--Please choose an option--</option>
+            <option value="fuji">Fuji</option>
+            <option value="mori">Mori</option>
+            <option value="honey-crisp">Honey Crisp</option>
+          </select>
 
-        <label className="form-label">Count</label>
-        <input type="number" name="count" className="form-control" onChange={handleChange} step="1"/>
+          <label className="form-label">Count</label>
+          <input type="number" name="count" className="form-control" onChange={handleChange} value={formData.count || ''} step="1"/>
 
-        <label className="form-check-label">Gift Wrap</label>
-        <input type="checkbox" name="gift-wrap" className="form-check" onChange={handleChange}/>
+          <label className="form-check-label">Gift Wrap</label>
+          <input type="checkbox" name="gift-wrap" className="form-check" onChange={handleChange} checked={formData['gift-wrap'] || false}/>
 
-        <button type="submit" className="btn btn-primary">Send</button>
-      </div>
+          <button type="submit" className="btn btn-primary">Send</button>
+        </div>
+      </fieldset>
     </form>
   );
 }
