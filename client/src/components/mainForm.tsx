@@ -2,17 +2,15 @@ import React from "react";
 import { useReducer, useState } from 'react';
 import 'bootstrap';
 
-// https://www.digitalocean.com/community/tutorials/how-to-build-forms-in-react
-
 const formReducer = (state: any, event: any) => {
-  if (event.reset) {
-    return {
-      apple: '',
-      count: 0,
-      appName: '',
-      'gift-warp': false
-    };
-  }
+  // if (event.reset) {
+  //   return {
+  //     apple: '',
+  //     count: 0,
+  //     appName: '',
+  //     'gift-warp': false
+  //   };
+  // }
   return {
     ...state,
     [event.name]: event.value
@@ -39,12 +37,12 @@ function MainForm(): JSX.Element {
     setSubmitting(true);
     setTimeout(() => {
       setSubmitting(false);
-      setFormData({reset: true});
+      // setFormData({reset: true});
     }, 2000);
   }
 
   return(
-    <form onSubmit={handleSubmit}>
+    <form className="row g-3" onSubmit={handleSubmit}>
       <fieldset disabled={submitting}>
         {submitting &&
         <div className="alert alert-primary" role="alert">
@@ -55,26 +53,35 @@ function MainForm(): JSX.Element {
             ))}
           </ul>
         </div>}
-        <div className="mb-3">
+
+        <div className="col-md-6">
           <label className="form-label">App name:</label>
           <input name="appName" className="form-control" onChange={handleChange} value={formData.appName || ''}/>
+        </div>
 
-          <label className="form-label">Apples</label>
-          <select name="apple" className="form-select" onChange={handleChange} value={formData.apple || ''}>
+        <div className="col-md-6">
+          <label className="form-label">Version:</label>
+          <input name="version" className="form-control" onChange={handleChange} value={formData.version || ''}/>
+        </div>
+
+        <div className="col-12">
+          <label className="form-label">Dependencies:</label>
+          <select name="dependencies" className="form-select" onChange={handleChange} value={formData.dependencies || ''}>
             <option value="">--Please choose an option--</option>
             <option value="fuji">Fuji</option>
             <option value="mori">Mori</option>
             <option value="honey-crisp">Honey Crisp</option>
           </select>
+        </div>
 
-          <label className="form-label">Count</label>
+        <div className="col-12">
+          <button type="submit" className="btn btn-primary">Send</button>
+        </div>
+          {/* <label className="form-label">Count</label>
           <input type="number" name="count" className="form-control" onChange={handleChange} value={formData.count || ''} step="1"/>
 
           <label className="form-check-label">Gift Wrap</label>
-          <input type="checkbox" name="gift-wrap" className="form-check" onChange={handleChange} checked={formData['gift-wrap'] || false} disabled={formData.apple !== 'fuji'}/>
-
-          <button type="submit" className="btn btn-primary">Send</button>
-        </div>
+          <input type="checkbox" name="gift-wrap" className="form-check" onChange={handleChange} checked={formData['gift-wrap'] || false} disabled={formData.apple !== 'fuji'}/> */}
       </fieldset>
     </form>
   );
