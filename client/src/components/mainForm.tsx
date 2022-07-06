@@ -2,7 +2,7 @@ import React from "react";
 import { useReducer, useState } from 'react';
 import 'bootstrap';
 
-type FormState = {
+interface FormState {
   appName: string,
   version: string,
   dependencies: string[]
