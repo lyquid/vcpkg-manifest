@@ -1,6 +1,4 @@
-import React from "react";
 import { useReducer, useState } from 'react';
-import 'bootstrap';
 
 interface VCPKGManifest {
   name: string,
@@ -15,14 +13,6 @@ const initialState: VCPKGManifest = {
 };
 
 const formReducer = (state: VCPKGManifest, action: any) => {
-  // if (event.reset) {
-  //   return {
-  //     apple: '',
-  //     count: 0,
-  //     name: '',
-  //     'gift-warp': false
-  //   };
-  // }
   return {
     ...state,
     [action.name]: action.value
@@ -34,6 +24,10 @@ function MainForm(): JSX.Element {
   const fileName = "vcpkg.json";
   const [formData, setFormData] = useReducer(formReducer, initialState);
   const [generating, setGenerating] = useState(false);
+
+  const clearForm = (): void => {
+    setFormData(initialState);
+  }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>): void => {
     // The value for a checkbox will always be "on", regardless of
@@ -80,15 +74,15 @@ function MainForm(): JSX.Element {
           <label className="form-label">Dependencies:</label>
           <select name="dependencies" className="form-select" onChange={handleChange} value={formData.dependencies}>
             <option value="">--Please choose an option--</option>
-            <option value="fuji">Fuji</option>
-            <option value="mori">Mori</option>
-            <option value="honey-crisp">Honey Crisp</option>
+            <option value="gTest">gTest</option>
+            <option value="SDL2">SDL2</option>
+            <option value="boost">boost</option>
           </select>
         </div>
 
         <div className="col-12">
           <button className="btn btn-primary" onClick={generateJSON}>Generate vcpkg.json</button>
-          {/* <button className="btn btn-danger" onClick={generateJSON}>Clear fields</button> */}
+          <button className="btn btn-danger" onClick={clearForm}>Clear fields</button>
         </div>
 
       </fieldset>
