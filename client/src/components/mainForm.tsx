@@ -2,24 +2,24 @@ import React from "react";
 import { useReducer, useState } from 'react';
 import 'bootstrap';
 
-interface FormState {
-  appName: string,
+interface VCPKGManifest {
+  name: string,
   version: string,
   dependencies: string[]
 };
 
-const initialState: FormState = {
-  appName: '',
+const initialState: VCPKGManifest = {
+  name: '',
   version: '',
   dependencies: []
 };
 
-const formReducer = (state: FormState, action: any) => {
+const formReducer = (state: VCPKGManifest, action: any) => {
   // if (event.reset) {
   //   return {
   //     apple: '',
   //     count: 0,
-  //     appName: '',
+  //     name: '',
   //     'gift-warp': false
   //   };
   // }
@@ -30,11 +30,13 @@ const formReducer = (state: FormState, action: any) => {
 }
 
 function MainForm(): JSX.Element {
+  const contentType = "text/plain";
+  const fileName = "vcpkg.json";
   const [formData, setFormData] = useReducer(formReducer, initialState);
-  const [submitting, setSubmitting] = useState(false);
+  const [generating, setGenerating] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>): void => {
-    // The value for the gift wrapping checkbox will always be "on", regardless of
+    // The value for a checkbox will always be "on", regardless of
     // whether the item is checked or not. Instead of using the event’s value,
     // you’ll need to use the checked property.
     const isCheckbox = event.target.type === 'checkbox';
@@ -44,31 +46,29 @@ function MainForm(): JSX.Element {
     });
   }
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
-    event.preventDefault();
-    setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
-      // setFormData({reset: true});
-    }, 2000);
+  const generateJSON = (): void => {
+    // disable fields
+    setGenerating(true);
+    // create file
+    const content = JSON.stringify(formData, null, 2);
+    const a = document.createElement("a");
+		const file = new Blob([content], { type: contentType });
+    // download
+		a.href = URL.createObjectURL(file);
+		a.download = fileName;
+		a.click();
+    // re-enable fields after x time
+    setTimeout(() => { setGenerating(false); }, 1000);
   }
 
   return(
-    <form className="row g-3" onSubmit={handleSubmit}>
-      <fieldset disabled={submitting}>
-        {submitting &&
-        <div className="alert alert-primary" role="alert">
-          Submitting...
-          <ul>
-            {Object.entries(formData).map(([name, value]): JSX.Element => (
-              <li key={name}><strong>{name}</strong>: {value.toString()}</li>
-            ))}
-          </ul>
-        </div>}
+    <form className="row g-3">
+      <fieldset disabled={generating}>
+        {generating && <div className="alert alert-primary" role="alert">Generating...</div>}
 
         <div className="col-md-6">
           <label className="form-label">App name:</label>
-          <input name="appName" className="form-control" onChange={handleChange} value={formData.appName}/>
+          <input name="name" className="form-control" onChange={handleChange} value={formData.name}/>
         </div>
 
         <div className="col-md-6">
@@ -87,13 +87,10 @@ function MainForm(): JSX.Element {
         </div>
 
         <div className="col-12">
-          <button type="submit" className="btn btn-primary">Send</button>
+          <button className="btn btn-primary" onClick={generateJSON}>Generate vcpkg.json</button>
+          {/* <button className="btn btn-danger" onClick={generateJSON}>Clear fields</button> */}
         </div>
-          {/* <label className="form-label">Count</label>
-          <input type="number" name="count" className="form-control" onChange={handleChange} value={formData.count || ''} step="1"/>
 
-          <label className="form-check-label">Gift Wrap</label>
-          <input type="checkbox" name="gift-wrap" className="form-check" onChange={handleChange} checked={formData['gift-wrap'] || false} disabled={formData.apple !== 'fuji'}/> */}
       </fieldset>
     </form>
   );

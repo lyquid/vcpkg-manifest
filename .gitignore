@@ -277,6 +277,7 @@ yarn-error.log*
 
 gitflow_cheatsheet.md
 example-vcpkg.json
+vcpkg.json
 config.env
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,node,react,visualstudiocode
