@@ -2,7 +2,19 @@ import React from "react";
 import { useReducer, useState } from 'react';
 import 'bootstrap';
 
-const formReducer = (state: any, event: any) => {
+type FormState = {
+  appName: string,
+  version: string,
+  dependencies: string[]
+};
+
+const initialState: FormState = {
+  appName: '',
+  version: '',
+  dependencies: []
+};
+
+const formReducer = (state: FormState, action: any) => {
   // if (event.reset) {
   //   return {
   //     apple: '',
@@ -13,12 +25,12 @@ const formReducer = (state: any, event: any) => {
   // }
   return {
     ...state,
-    [event.name]: event.value
+    [action.name]: action.value
   }
 }
 
 function MainForm(): JSX.Element {
-  const [formData, setFormData] = useReducer(formReducer, {count: 100});
+  const [formData, setFormData] = useReducer(formReducer, initialState);
   const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>): void => {
@@ -48,7 +60,7 @@ function MainForm(): JSX.Element {
         <div className="alert alert-primary" role="alert">
           Submitting...
           <ul>
-            {Object.entries(formData).map(([name, value]: any) => (
+            {Object.entries(formData).map(([name, value]): JSX.Element => (
               <li key={name}><strong>{name}</strong>: {value.toString()}</li>
             ))}
           </ul>
@@ -56,17 +68,17 @@ function MainForm(): JSX.Element {
 
         <div className="col-md-6">
           <label className="form-label">App name:</label>
-          <input name="appName" className="form-control" onChange={handleChange} value={formData.appName || ''}/>
+          <input name="appName" className="form-control" onChange={handleChange} value={formData.appName}/>
         </div>
 
         <div className="col-md-6">
           <label className="form-label">Version:</label>
-          <input name="version" className="form-control" onChange={handleChange} value={formData.version || ''}/>
+          <input name="version" className="form-control" onChange={handleChange} value={formData.version}/>
         </div>
 
         <div className="col-12">
           <label className="form-label">Dependencies:</label>
-          <select name="dependencies" className="form-select" onChange={handleChange} value={formData.dependencies || ''}>
+          <select name="dependencies" className="form-select" onChange={handleChange} value={formData.dependencies}>
             <option value="">--Please choose an option--</option>
             <option value="fuji">Fuji</option>
             <option value="mori">Mori</option>
