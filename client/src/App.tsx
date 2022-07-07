@@ -1,11 +1,10 @@
 import { Route, Routes } from "react-router-dom";
-import Navbar from "./components/navbar";
 import MainForm from "./components/mainForm";
 
 const App = () => {
   return (
     <div>
-      <Navbar/>
+      {/* <Navbar/> */}
       <Routes>
         <Route path="/" element={<MainForm/>}/>
         {/* <Route path="/edit/:id" element={<Edit/>}/>

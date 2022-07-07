@@ -1,6 +1,7 @@
-import { useReducer, useState } from 'react';
+import { SyntheticEvent, useReducer, useState } from 'react';
+import { Alert, Autocomplete, Box, Button, TextField } from '@mui/material';
 
-interface VCPKGManifest {
+type VCPKGManifest = {
   name: string,
   version: string,
   dependencies: string[]
@@ -26,17 +27,31 @@ function MainForm(): JSX.Element {
   const [generating, setGenerating] = useState(false);
 
   const clearForm = (): void => {
-    setFormData(initialState);
+    setFormData({
+      name: 'name',
+      value: '',
+    });
+    setFormData({
+      name: 'version',
+      value: '',
+    });
+    setFormData({
+      name: 'dependencies',
+      value: [],
+    });
   }
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>): void => {
-    // The value for a checkbox will always be "on", regardless of
-    // whether the item is checked or not. Instead of using the event’s value,
-    // you’ll need to use the checked property.
-    const isCheckbox = event.target.type === 'checkbox';
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setFormData({
       name: event.target.name,
-      value: isCheckbox ? (event.target as HTMLInputElement).checked : event.target.value
+      value: event.target.value
+    });
+  }
+
+  const handleSelectChange = (event: React.SyntheticEvent, value: string[]): void => {
+    setFormData({
+      name: "dependencies", // ugly hack!
+      value: value
     });
   }
 
@@ -52,41 +67,45 @@ function MainForm(): JSX.Element {
 		a.download = fileName;
 		a.click();
     // re-enable fields after x time
-    setTimeout(() => { setGenerating(false); }, 1000);
+    setTimeout(() => { setGenerating(false); }, 10000);
   }
 
+  const mockDepencencies = ["gTest", "SDL2", "boost", "glm", "SFML"];
+
   return(
-    <form className="row g-3">
+    <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '75ch' },}} autoComplete="on">
       <fieldset disabled={generating}>
-        {generating && <div className="alert alert-primary" role="alert">Generating...</div>}
+        {generating && <Alert severity="info" variant='standard'>Generating...</Alert>}
 
-        <div className="col-md-6">
-          <label className="form-label">App name:</label>
-          <input name="name" className="form-control" onChange={handleChange} value={formData.name}/>
+        <div>
+          <TextField label="App name" name="name" onChange={handleChange} value={formData.name}/>
         </div>
 
-        <div className="col-md-6">
-          <label className="form-label">Version:</label>
-          <input name="version" className="form-control" onChange={handleChange} value={formData.version}/>
+        <div>
+          <TextField label="Version" name="version" onChange={handleChange} value={formData.version}/>
         </div>
 
-        <div className="col-12">
-          <label className="form-label">Dependencies:</label>
-          <select name="dependencies" className="form-select" onChange={handleChange} value={formData.dependencies}>
-            <option value="">--Please choose an option--</option>
-            <option value="gTest">gTest</option>
-            <option value="SDL2">SDL2</option>
-            <option value="boost">boost</option>
-          </select>
+        <div>
+          <Autocomplete
+            multiple
+            options={mockDepencencies.sort(Intl.Collator().compare)}
+            filterSelectedOptions
+            getOptionLabel={(option) => option}
+            onChange={handleSelectChange}
+            value={formData.dependencies}
+            renderInput={(params) => (
+              <TextField {...params} variant="standard" label="Dependencies"/>
+            )}
+          />
         </div>
 
-        <div className="col-12">
-          <button className="btn btn-primary" onClick={generateJSON}>Generate vcpkg.json</button>
-          <button className="btn btn-danger" onClick={clearForm}>Clear fields</button>
+        <div>
+          <Button variant="contained" color="primary" onClick={generateJSON}>Generate vcpkg.json</Button>
+          <Button variant="contained" color="error" onClick={clearForm}>Clear fields</Button>
         </div>
 
       </fieldset>
-    </form>
+    </Box>
   );
 }
 
