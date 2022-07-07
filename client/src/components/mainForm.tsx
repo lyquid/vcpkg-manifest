@@ -20,9 +20,7 @@ const formReducer = (state: VCPKGManifest, action: any) => {
   }
 }
 
-function MainForm(): JSX.Element {
-  const contentType = "text/plain";
-  const fileName = "vcpkg.json";
+function MainForm() {
   const [formData, setFormData] = useReducer(formReducer, initialState);
   const [generating, setGenerating] = useState(false);
 
@@ -56,18 +54,20 @@ function MainForm(): JSX.Element {
   }
 
   const generateJSON = (): void => {
+    const contentType = "text/plain";
+    const fileName = "vcpkg.json";
     // disable fields
     setGenerating(true);
     // create file
     const content = JSON.stringify(formData, null, 2);
-    const a = document.createElement("a");
 		const file = new Blob([content], { type: contentType });
-    // download
-		a.href = URL.createObjectURL(file);
-		a.download = fileName;
-		a.click();
+    // create link & download
+    const link = document.createElement("a");
+		link.href = URL.createObjectURL(file);
+		link.download = fileName;
+		link.click();
     // re-enable fields after x time
-    setTimeout(() => { setGenerating(false); }, 10000);
+    setTimeout(() => { setGenerating(false); }, 1000);
   }
 
   const mockDepencencies = ["gTest", "SDL2", "boost", "glm", "SFML"];
@@ -75,7 +75,7 @@ function MainForm(): JSX.Element {
   return(
     <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '75ch' },}} autoComplete="on">
       <fieldset disabled={generating}>
-        {generating && <Alert severity="info" variant='standard'>Generating...</Alert>}
+        {generating && <Alert severity="info" variant='standard'>Generating vcpkg.json</Alert>}
 
         <div>
           <TextField label="App name" name="name" onChange={handleChange} value={formData.name}/>
