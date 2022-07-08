@@ -1,5 +1,6 @@
 import { SyntheticEvent, useReducer, useState } from 'react';
-import { Alert, Autocomplete, Box, Button, TextField } from '@mui/material';
+import { Alert, Autocomplete, Box, Button, List, ListItem, ListItemText, IconButton, TextField } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 type Dependency = {
   library: string,
@@ -70,8 +71,8 @@ function MainForm() {
     // disable fields
     setGenerating(true);
     // sort and manipulate the data to match vcpkg.json format
-    // const data: VCPKGManifest = JSON.parse(JSON.stringify(formData)); // deep copy, no changes to the form
-    const data = formData; // shallow copy, the form will be sorted
+    const data: VCPKGManifest = JSON.parse(JSON.stringify(formData)); // deep copy, no changes to the form
+    // const data = formData; // shallow copy, the form will be sorted
     const dependencies: string[] = [];
     for (let dependency of data.dependencies.sort(compareDependencies)) {
       dependencies.push(dependency.library);
@@ -93,6 +94,27 @@ function MainForm() {
     setTimeout(() => { setGenerating(false); }, 1000);
   }
 
+  const removeDependency = (dependency: Dependency) => {
+    setFormData({
+      name: 'dependencies',
+      value: formData.dependencies.filter(dep => dep !== dependency)
+    });
+  }
+
+  function ListDependencies() {
+    const dependenciesList = formData.dependencies.map((dependency: Dependency) =>
+      <ListItem key={dependency.library} secondaryAction={
+        <IconButton aria-label="delete" edge="end" onClick={() => removeDependency(dependency)}>
+          <DeleteIcon/>
+        </IconButton>
+      }>
+        <ListItemText primary={dependency.library} secondary={"sec text"/* secondary ? 'Secondary text' : null */}/>
+        {/* {dependency.library}, {dependency.version || "default version"} */}
+      </ListItem>
+    );
+    return(<List>{dependenciesList}</List>);
+  }
+
   const mockDepencencies: Dependency[] = [
     {library: 'gTest', version: ''},
     {library: 'boost', version: ''},
@@ -106,39 +128,52 @@ function MainForm() {
   ];
 
   return(
-    <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '75ch' },}} autoComplete="on">
-      <fieldset disabled={generating}>
-        {generating && <Alert severity="info" variant='standard'>Generating vcpkg.json</Alert>}
+    <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '75ch' }}} autoComplete="on">
+      {generating && <Alert severity="info" variant='standard'>Generating vcpkg.json</Alert>}
+      <Box>
+        <fieldset disabled={generating}>
 
-        <div>
-          <TextField label="App name" name="name" onChange={handleChange} value={formData.name}/>
-        </div>
+          <div>
+            <TextField label="App name" name="name" onChange={handleChange} value={formData.name}/>
+          </div>
 
-        <div>
-          <TextField label="Version" name="version" onChange={handleChange} value={formData.version}/>
-        </div>
+          <div>
+            <TextField label="Version" name="version" onChange={handleChange} value={formData.version}/>
+          </div>
 
-        <div>
-          <Autocomplete
-            multiple
-            options={mockDepencencies.sort(compareDependencies)}
-            isOptionEqualToValue={(option, value) => option.library === value.library }
-            filterSelectedOptions
-            getOptionLabel={(option) => option.library}
-            onChange={handleSelectChange}
-            value={formData.dependencies}
-            renderInput={(params) => (
-              <TextField {...params} variant="standard" label="Dependencies"/>
-            )}
-          />
-        </div>
+          <div>
+            <Autocomplete
+              multiple
+              options={mockDepencencies.sort(compareDependencies)}
+              isOptionEqualToValue={(option, value) => option.library === value.library }
+              filterSelectedOptions
+              getOptionLabel={(option) => option.library}
+              onChange={handleSelectChange}
+              value={formData.dependencies}
+              renderInput={(params) => (
+                <TextField {...params} variant="standard" label="Dependencies"/>
+              )}
+            />
+          </div>
 
-        <div>
-          <Button variant="contained" color="primary" onClick={generateJSON}>Generate vcpkg.json</Button>
-          <Button variant="contained" color="error" onClick={clearForm}>Clear fields</Button>
-        </div>
+          <div>
+            <Button variant="contained" color="primary" onClick={generateJSON}>Generate vcpkg.json</Button>
+            <Button variant="contained" color="error" onClick={clearForm}>Clear fields</Button>
+          </div>
 
-      </fieldset>
+        </fieldset>
+      </Box>
+
+      {formData.dependencies.length > 0 &&
+        <Box>
+          <fieldset disabled={generating}>
+            <div>
+              <ListDependencies/>
+            </div>
+          </fieldset>
+        </Box>
+      }
+
     </Box>
   );
 }
