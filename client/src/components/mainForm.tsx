@@ -1,7 +1,8 @@
 import { SyntheticEvent, useReducer, useState } from 'react';
-import { Alert, Autocomplete, Box, Button, TextField } from '@mui/material';
+import { Alert, Box, Button, TextField } from '@mui/material';
 import { compareDependencies, Dependency, VCPKGManifest } from '../types'
 import DependenciesList from './dependenciesList'
+import DependencyPicker from './dependencyPicker';
 
 const initialState: VCPKGManifest = {
   name: '',
@@ -85,18 +86,6 @@ function MainForm() {
     });
   }
 
-  const mockDepencencies: Dependency[] = [
-    {library: 'gTest', version: ''},
-    {library: 'boost', version: ''},
-    {library: 'SDL2', version: ''},
-    {library: 'ZZtop', version: ''},
-    {library: 'SFML', version: ''},
-    {library: 'abc', version: ''},
-    {library: 'Acb', version: ''},
-    {library: 'Abc', version: ''},
-    {library: 'glm', version: ''}
-  ];
-
   return(
     <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '75ch' }}} autoComplete="on">
       {generating && <Alert severity="info" variant='standard'>Generating vcpkg.json</Alert>}
@@ -112,18 +101,7 @@ function MainForm() {
           </div>
 
           <div>
-            <Autocomplete
-              multiple
-              options={mockDepencencies.sort(compareDependencies)}
-              isOptionEqualToValue={(option, value) => option.library === value.library }
-              filterSelectedOptions
-              getOptionLabel={(option) => option.library}
-              onChange={handleSelectChange}
-              value={formData.dependencies}
-              renderInput={(params) => (
-                <TextField {...params} variant="standard" label="Dependencies"/>
-              )}
-            />
+            <DependencyPicker dependencies={formData.dependencies} handleChange={handleSelectChange}/>
           </div>
 
           <div>
