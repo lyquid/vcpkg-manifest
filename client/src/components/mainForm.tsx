@@ -1,23 +1,7 @@
 import { SyntheticEvent, useReducer, useState } from 'react';
-import { Alert, Autocomplete, Box, Button, List, ListItem, ListItemText, IconButton, TextField } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
-
-type Dependency = {
-  library: string,
-  version: string
-};
-
-function compareDependencies(a: Dependency, b: Dependency) {
-  if (a.library.toLocaleLowerCase() < b.library.toLocaleLowerCase()) return -1;
-  if (a.library.toLocaleLowerCase() > b.library.toLocaleLowerCase()) return 1;
-  return 0;
-}
-
-type VCPKGManifest = {
-  name: string,
-  version: string,
-  dependencies: Dependency[]
-};
+import { Alert, Autocomplete, Box, Button, TextField } from '@mui/material';
+import { compareDependencies, Dependency, VCPKGManifest } from '../types'
+import DependenciesList from './dependenciesList'
 
 const initialState: VCPKGManifest = {
   name: '',
@@ -51,20 +35,6 @@ function MainForm() {
     });
   }
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setFormData({
-      name: event.target.name,
-      value: event.target.value
-    });
-  }
-
-  const handleSelectChange = (event: React.SyntheticEvent, value: Dependency[]): void => {
-    setFormData({
-      name: "dependencies", // ugly hack!
-      value: value
-    });
-  }
-
   const generateJSON = (): void => {
     const contentType = "text/plain";
     const fileName = "vcpkg.json";
@@ -94,25 +64,25 @@ function MainForm() {
     setTimeout(() => { setGenerating(false); }, 1000);
   }
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setFormData({
+      name: event.target.name,
+      value: event.target.value
+    });
+  }
+
+  const handleSelectChange = (event: React.SyntheticEvent, value: Dependency[]): void => {
+    setFormData({
+      name: "dependencies", // ugly hack!
+      value: value
+    });
+  }
+
   const removeDependency = (dependency: Dependency) => {
     setFormData({
       name: 'dependencies',
       value: formData.dependencies.filter(dep => dep !== dependency)
     });
-  }
-
-  function ListDependencies() {
-    const dependenciesList = formData.dependencies.map((dependency: Dependency) =>
-      <ListItem key={dependency.library} secondaryAction={
-        <IconButton aria-label="delete" edge="end" onClick={() => removeDependency(dependency)}>
-          <DeleteIcon/>
-        </IconButton>
-      }>
-        <ListItemText primary={dependency.library} secondary={"sec text"/* secondary ? 'Secondary text' : null */}/>
-        {/* {dependency.library}, {dependency.version || "default version"} */}
-      </ListItem>
-    );
-    return(<List>{dependenciesList}</List>);
   }
 
   const mockDepencencies: Dependency[] = [
@@ -168,7 +138,7 @@ function MainForm() {
         <Box>
           <fieldset disabled={generating}>
             <div>
-              <ListDependencies/>
+              <DependenciesList dependencies={formData.dependencies} removeFunc={removeDependency}/>
             </div>
           </fieldset>
         </Box>
