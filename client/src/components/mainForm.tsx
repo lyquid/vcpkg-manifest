@@ -3,7 +3,7 @@ import { Box, Button } from '@mui/material';
 import { compareDependencies, Dependency, VCPKGManifest } from '../types'
 import AppName from './appName'
 import AppVersion from './appVersion';
-import DependenciesList from './dependenciesList'
+import DependenciesSection from './dependenciesSection';
 import DependencyPicker from './dependencyPicker';
 import JSONGeneratingAlert from './JSONGeneratingAlert';
 
@@ -111,13 +111,11 @@ function MainForm() {
       </Box>
 
       {formData.dependencies.length > 0 &&
-        <Box>
-          <fieldset disabled={generating}>
-            <div>
-              <DependenciesList dependencies={formData.dependencies} removeFunc={removeDependency}/>
-            </div>
-          </fieldset>
-        </Box>
+        <DependenciesSection
+          dependencies={formData.dependencies}
+          generating={generating}
+          removeFunc={removeDependency}
+        />
       }
 
     </Box>

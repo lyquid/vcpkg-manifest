@@ -4,7 +4,7 @@ import { Dependency } from '../types'
 
 interface ListParams {
   dependencies: Dependency[],
-  removeFunc: Function
+  removeFunc:   Function
 };
 
 export default function DependenciesList(props: ListParams) {
