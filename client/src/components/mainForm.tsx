@@ -1,11 +1,13 @@
 import { SyntheticEvent, useReducer, useState } from 'react';
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
 import { Dependency, VCPKGManifest } from '../types'
 import AppName from './AppName'
 import AppVersion from './AppVersion';
+import ClearForm from './ClearForm';
 import DependenciesSection from './DependenciesSection';
 import DependencyPicker from './DependencyPicker';
 import generateJSON from '../generateJSON';
+import GenerateJSONButton from './GenerateJSONButton';
 import JSONGeneratingAlert from './JSONGeneratingAlert';
 
 const initialState: VCPKGManifest = {
@@ -79,12 +81,18 @@ function MainForm() {
       {generating && <JSONGeneratingAlert/>}
       <Box>
         <fieldset disabled={generating}>
-          <div><AppName appName={formData.name} handleChange={handleChange}/></div>
-          <div><AppVersion appVersion={formData.version} handleChange={handleChange}/></div>
-          <div><DependencyPicker dependencies={formData.dependencies} handleChange={handleSelectChange}/></div>
           <div>
-            <Button variant="contained" color="primary" onClick={generateFile}>Generate vcpkg.json</Button>
-            <Button variant="contained" color="error" onClick={clearForm}>Clear fields</Button>
+            <AppName appName={formData.name} handleChange={handleChange}/>
+          </div>
+          <div>
+            <AppVersion appVersion={formData.version} handleChange={handleChange}/>
+          </div>
+          <div>
+            <DependencyPicker dependencies={formData.dependencies} handleChange={handleSelectChange}/>
+          </div>
+          <div>
+            <GenerateJSONButton generateFunc={generateFile}/>
+            <ClearForm clearFunc={clearForm}/>
           </div>
         </fieldset>
       </Box>
@@ -96,7 +104,6 @@ function MainForm() {
           removeFunc={removeDependency}
         />
       }
-
     </Box>
   );
 }
