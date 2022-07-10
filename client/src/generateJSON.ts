@@ -14,6 +14,5 @@ export default function generateJSON(formData: VCPKGManifest) {
     dependencies: dependencies
   };
   // create & return file
-  const finalDataStringified = JSON.stringify(finalData, null, 2);
-  return new Blob([finalDataStringified], { type: contentType });
+  return new Blob([JSON.stringify(finalData, null, 2)], { type: contentType });
 }

@@ -79,15 +79,9 @@ function MainForm() {
       {generating && <JSONGeneratingAlert/>}
       <Box>
         <fieldset disabled={generating}>
-          <div>
-            <AppName appName={formData.name} handleChange={handleChange}/>
-          </div>
-          <div>
-            <AppVersion appVersion={formData.version} handleChange={handleChange}/>
-          </div>
-          <div>
-            <DependencyPicker dependencies={formData.dependencies} handleChange={handleSelectChange}/>
-          </div>
+          <div><AppName appName={formData.name} handleChange={handleChange}/></div>
+          <div><AppVersion appVersion={formData.version} handleChange={handleChange}/></div>
+          <div><DependencyPicker dependencies={formData.dependencies} handleChange={handleSelectChange}/></div>
           <div>
             <Button variant="contained" color="primary" onClick={generateFile}>Generate vcpkg.json</Button>
             <Button variant="contained" color="error" onClick={clearForm}>Clear fields</Button>
