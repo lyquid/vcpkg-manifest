@@ -25,7 +25,7 @@ export let database: MongoDB.Db;
 export async function connectToDatabase() {
   const client: MongoDB.MongoClient = new MongoDB.MongoClient((process.env.ATLAS_URI) as string);
   await client.connect();
-  database = client.db((process.env.DB_NAME) as string);
-  const librariesCollection: MongoDB.Collection = database.collection("libraries");
+  database = client.db(process.env.DB_NAME);
+  const librariesCollection: MongoDB.Collection = database.collection("restaurants");
   console.log(`Successfully connected to database "${database.databaseName}" and collection "${librariesCollection.collectionName}".`);
 }
