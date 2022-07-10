@@ -1,10 +1,11 @@
 import { SyntheticEvent, useReducer, useState } from 'react';
 import { Box, Button } from '@mui/material';
-import { compareDependencies, Dependency, VCPKGManifest } from '../types'
+import { Dependency, VCPKGManifest } from '../types'
 import AppName from './AppName'
 import AppVersion from './AppVersion';
 import DependenciesSection from './DependenciesSection';
 import DependencyPicker from './DependencyPicker';
+import generateJSON from '../generateJSON';
 import JSONGeneratingAlert from './JSONGeneratingAlert';
 
 const initialState: VCPKGManifest = {
@@ -39,29 +40,13 @@ function MainForm() {
     });
   }
 
-  const generateJSON = (): void => {
-    const contentType = "text/plain";
-    const fileName = "vcpkg.json";
+  const generateFile = (): void => {
     // disable fields
     setGenerating(true);
-    // sort and manipulate the data to match vcpkg.json format
-    const data: VCPKGManifest = JSON.parse(JSON.stringify(formData)); // deep copy, no changes to the form
-    // const data = formData; // shallow copy, the form will be sorted
-    const dependencies: string[] = [];
-    for (let dependency of data.dependencies.sort(compareDependencies)) {
-      dependencies.push(dependency.library);
-    }
-    const finalData = {
-      name: data.name,
-      version: data.version,
-      dependencies: dependencies
-    };
-    // create file
-    const finalDataStringified = JSON.stringify(finalData, null, 2);
-		const file = new Blob([finalDataStringified], { type: contentType });
-    // create link & download
+    // create file, link & download
+    const fileName = "vcpkg.json";
     const link = document.createElement("a");
-		link.href = URL.createObjectURL(file);
+		link.href = URL.createObjectURL(generateJSON(formData));
 		link.download = fileName;
 		link.click();
     // re-enable fields after x time
@@ -104,7 +89,7 @@ function MainForm() {
             <DependencyPicker dependencies={formData.dependencies} handleChange={handleSelectChange}/>
           </div>
           <div>
-            <Button variant="contained" color="primary" onClick={generateJSON}>Generate vcpkg.json</Button>
+            <Button variant="contained" color="primary" onClick={generateFile}>Generate vcpkg.json</Button>
             <Button variant="contained" color="error" onClick={clearForm}>Clear fields</Button>
           </div>
         </fieldset>
