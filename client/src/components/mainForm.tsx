@@ -1,7 +1,8 @@
 import { SyntheticEvent, useReducer, useState } from 'react';
-import { Alert, Box, Button, TextField } from '@mui/material';
+import { Alert, Box, Button } from '@mui/material';
 import { compareDependencies, Dependency, VCPKGManifest } from '../types'
 import AppName from './appName'
+import AppVersion from './appVersion';
 import DependenciesList from './dependenciesList'
 import DependencyPicker from './dependencyPicker';
 
@@ -92,24 +93,19 @@ function MainForm() {
       {generating && <Alert severity="info" variant='standard'>Generating vcpkg.json</Alert>}
       <Box>
         <fieldset disabled={generating}>
-
           <div>
             <AppName appName={formData.name} handleChange={handleChange}/>
           </div>
-
           <div>
-            <TextField label="Version" name="version" onChange={handleChange} value={formData.version}/>
+            <AppVersion appVersion={formData.version} handleChange={handleChange}/>
           </div>
-
           <div>
             <DependencyPicker dependencies={formData.dependencies} handleChange={handleSelectChange}/>
           </div>
-
           <div>
             <Button variant="contained" color="primary" onClick={generateJSON}>Generate vcpkg.json</Button>
             <Button variant="contained" color="error" onClick={clearForm}>Clear fields</Button>
           </div>
-
         </fieldset>
       </Box>
 
