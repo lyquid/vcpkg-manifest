@@ -1,10 +1,11 @@
 import { SyntheticEvent, useReducer, useState } from 'react';
-import { Alert, Box, Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { compareDependencies, Dependency, VCPKGManifest } from '../types'
 import AppName from './appName'
 import AppVersion from './appVersion';
 import DependenciesList from './dependenciesList'
 import DependencyPicker from './dependencyPicker';
+import JSONGeneratingAlert from './JSONGeneratingAlert';
 
 const initialState: VCPKGManifest = {
   name: '',
@@ -90,7 +91,7 @@ function MainForm() {
 
   return(
     <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '75ch' }}} autoComplete="on">
-      {generating && <Alert severity="info" variant='standard'>Generating vcpkg.json</Alert>}
+      {generating && <JSONGeneratingAlert/>}
       <Box>
         <fieldset disabled={generating}>
           <div>
