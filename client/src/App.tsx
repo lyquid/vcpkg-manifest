@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import MainForm from "./components/mainForm";
+import MainForm from "./components/MainForm";
 
 const App = () => {
   return (

@@ -1,10 +1,10 @@
 import { SyntheticEvent, useReducer, useState } from 'react';
 import { Box, Button } from '@mui/material';
 import { compareDependencies, Dependency, VCPKGManifest } from '../types'
-import AppName from './appName'
-import AppVersion from './appVersion';
-import DependenciesSection from './dependenciesSection';
-import DependencyPicker from './dependencyPicker';
+import AppName from './AppName'
+import AppVersion from './AppVersion';
+import DependenciesSection from './DependenciesSection';
+import DependencyPicker from './DependencyPicker';
 import JSONGeneratingAlert from './JSONGeneratingAlert';
 
 const initialState: VCPKGManifest = {
