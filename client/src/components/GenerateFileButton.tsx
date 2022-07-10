@@ -4,7 +4,7 @@ interface GenerateParams {
   generateFunc: Function
 };
 
-export default function GenerateJSONButton(props: GenerateParams) {
+export default function GenerateFileButton(props: GenerateParams) {
   return(
     <Button
       variant="contained"

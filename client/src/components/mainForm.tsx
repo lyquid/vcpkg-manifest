@@ -7,8 +7,8 @@ import ClearForm from './ClearForm';
 import DependenciesSection from './DependenciesSection';
 import DependencyPicker from './DependencyPicker';
 import generateJSON from '../generateJSON';
-import GenerateJSONButton from './GenerateJSONButton';
-import JSONGeneratingAlert from './JSONGeneratingAlert';
+import GenerateFileButton from './GenerateFileButton';
+import GeneratingAlert from './GeneratingAlert';
 
 const initialState: VCPKGManifest = {
   name: '',
@@ -78,7 +78,7 @@ function MainForm() {
 
   return(
     <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '75ch' }}} autoComplete="on">
-      {generating && <JSONGeneratingAlert/>}
+      {generating && <GeneratingAlert/>}
       <Box>
         <fieldset disabled={generating}>
           <div>
@@ -91,7 +91,7 @@ function MainForm() {
             <DependencyPicker dependencies={formData.dependencies} handleChange={handleSelectChange}/>
           </div>
           <div>
-            <GenerateJSONButton generateFunc={generateFile}/>
+            <GenerateFileButton generateFunc={generateFile}/>
             <ClearForm clearFunc={clearForm}/>
           </div>
         </fieldset>
