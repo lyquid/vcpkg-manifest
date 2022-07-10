@@ -1,6 +1,7 @@
 import { SyntheticEvent, useReducer, useState } from 'react';
 import { Alert, Box, Button, TextField } from '@mui/material';
 import { compareDependencies, Dependency, VCPKGManifest } from '../types'
+import AppName from './appName'
 import DependenciesList from './dependenciesList'
 import DependencyPicker from './dependencyPicker';
 
@@ -93,7 +94,7 @@ function MainForm() {
         <fieldset disabled={generating}>
 
           <div>
-            <TextField label="App name" name="name" onChange={handleChange} value={formData.name}/>
+            <AppName appName={formData.name} handleChange={handleChange}/>
           </div>
 
           <div>
