@@ -1,25 +1,31 @@
-const { MongoClient } = require("mongodb");
-const Db = process.env.ATLAS_URI;
-const client = new MongoClient(Db, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+import * as MongoDB from "mongodb";
 
-var _db: any;
+//const { MongoClient } = require("mongodb");
+// const Db = (process.env.ATLAS_URI) as string;
+// const client: MongoDB.MongoClient = new MongoDB.MongoClient((process.env.ATLAS_URI) as string);
+// var _db: MongoDB.Db;
 
-module.exports = {
-  connectToServer: function (callback: any) {
-    client.connect(function (err: any, db: any) {
-      // Verify we got a good "db" object
-      if (db) {
-        _db = db.db("cluster0");
-        console.log("Successfully connected to MongoDB.");
-      }
-      return callback(err);
-    });
-  },
+// module.exports = {
+//   connectToServer: (callback: Function) => {
+//     client.connect((err: any, db: any) => {
+//       // Verify we got a good "db" object
+//       if (db) {
+//         _db = db.db("cluster0");
+//         console.log("Successfully connected to MongoDB.");
+//       }
+//       return callback(err);
+//     });
+//   },
 
-  getDb: function () {
-    return _db;
-  },
-};
+//   getDatabase: () => { return _db; }
+// };
+
+export let database: MongoDB.Db;
+
+export async function connectToDatabase() {
+  const client: MongoDB.MongoClient = new MongoDB.MongoClient((process.env.ATLAS_URI) as string);
+  await client.connect();
+  database = client.db((process.env.DB_NAME) as string);
+  const librariesCollection: MongoDB.Collection = database.collection("libraries");
+  console.log(`Successfully connected to database "${database.databaseName}" and collection "${librariesCollection.collectionName}".`);
+}
