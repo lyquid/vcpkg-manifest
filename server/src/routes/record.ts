@@ -10,11 +10,11 @@ const recordRoutes = express.Router();
 const ObjectId = require("mongodb").ObjectId;
 
 // This section will help you get a list of all the records.
-recordRoutes.route("/record").get((req: express.Request, res: express.Response) => {
+recordRoutes.route("/libraries").get((req: express.Request, res: express.Response) => {
   // let db_connect = dbo.getDb("cluster0");
   let db_connect = database;
   db_connect
-    .collection("records")
+    .collection("restaurants")
     .find({})
     .toArray((err: any, result: any) => {
       if (err) throw err;
@@ -23,53 +23,53 @@ recordRoutes.route("/record").get((req: express.Request, res: express.Response) 
 });
 
 // This section will help you get a single record by id
-recordRoutes.route("/record/:id").get((req: express.Request, res: express.Response) => {
-  let db_connect = database;
-  let myquery = { _id: ObjectId(req.params.id)};
-  db_connect
-    .collection("records")
-    .findOne(myquery, (err: any, result: any) => {
-      if (err) throw err;
-      res.json(result);
-    });
-});
+// recordRoutes.route("/record/:id").get((req: express.Request, res: express.Response) => {
+//   let db_connect = database;
+//   let myquery = { _id: ObjectId(req.params.id)};
+//   db_connect
+//     .collection("restaurants")
+//     .findOne(myquery, (err: any, result: any) => {
+//       if (err) throw err;
+//       res.json(result);
+//     });
+// });
 
-// This section will help you create a new record.
-recordRoutes.route("/record/add").post((req: express.Request, response: express.Response) => {
-  let db_connect = database;
-  let myobj = {
-    name: req.body.name,
-    position: req.body.position,
-    level: req.body.level,
-  };
-  db_connect.collection("records").insertOne(myobj, (err: any, res: any) => {
-    if (err) throw err;
-    response.json(res);
-  });
-});
+// // This section will help you create a new record.
+// recordRoutes.route("/record/add").post((req: express.Request, response: express.Response) => {
+//   let db_connect = database;
+//   let myobj = {
+//     name: req.body.name,
+//     position: req.body.position,
+//     level: req.body.level,
+//   };
+//   db_connect.collection("records").insertOne(myobj, (err: any, res: any) => {
+//     if (err) throw err;
+//     response.json(res);
+//   });
+// });
 
-// This section will help you update a record by id.
-recordRoutes.route("/update/:id").post((req: express.Request, response: express.Response) => {
-  let db_connect = database;
-  let myquery = { _id: ObjectId( req.params.id )};
-  let newvalues = {
-    $set: {
-      name: req.body.name,
-      position: req.body.position,
-      level: req.body.level,
-    },
-  }
-});
+// // This section will help you update a record by id.
+// recordRoutes.route("/update/:id").post((req: express.Request, response: express.Response) => {
+//   let db_connect = database;
+//   let myquery = { _id: ObjectId( req.params.id )};
+//   let newvalues = {
+//     $set: {
+//       name: req.body.name,
+//       position: req.body.position,
+//       level: req.body.level,
+//     },
+//   }
+// });
 
-// This section will help you delete a record
-recordRoutes.route("/:id").delete((req: express.Request, response: express.Response) => {
-  let db_connect = database;
-  let myquery = { _id: ObjectId( req.params.id )};
-  db_connect.collection("records").deleteOne(myquery, (err: any, obj: any) => {
-    if (err) throw err;
-    console.log("1 document deleted");
-    response.json(obj);
-  });
-});
+// // This section will help you delete a record
+// recordRoutes.route("/:id").delete((req: express.Request, response: express.Response) => {
+//   let db_connect = database;
+//   let myquery = { _id: ObjectId( req.params.id )};
+//   db_connect.collection("records").deleteOne(myquery, (err: any, obj: any) => {
+//     if (err) throw err;
+//     console.log("1 document deleted");
+//     response.json(obj);
+//   });
+// });
 
 module.exports = recordRoutes;
