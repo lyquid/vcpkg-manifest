@@ -2,24 +2,18 @@ import { Route, Routes } from "react-router-dom";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import MainForm from "./components/MainForm";
 
-const darkTheme = createTheme({
+const appTheme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: 'light',
     // background: {
     //   default: 'black',
     // }
   }
 });
 
-const lightTheme = createTheme({
-  palette: {
-    mode: 'light'
-  }
-});
-
 const App = () => {
   return (
-    <ThemeProvider theme={lightTheme}>
+    <ThemeProvider theme={appTheme}>
       <CssBaseline/>
       <main>
         <Routes>
