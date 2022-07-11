@@ -1,17 +1,17 @@
 import { TextField } from "@mui/material";
 
-interface AppVersionParams {
-  appVersion:   string,
+interface VersionParams {
+  version:      string,
   handleChange: Function
 };
 
-export default function AppVersion(props: AppVersionParams) {
+export default function Version(props: VersionParams) {
   return(
     <TextField
       label="Version"
       name="version"
       onChange={(event) => props.handleChange(event)}
-      value={props.appVersion}
+      value={props.version}
     />
   );
 }

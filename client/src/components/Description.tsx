@@ -1,11 +1,11 @@
 import { TextField } from "@mui/material";
 
-interface AppDescriptionParams {
-  appDescription?: string,
-  handleChange:    Function
+interface DescriptionParams {
+  description?: string,
+  handleChange: Function
 };
 
-export default function AppDescription(props: AppDescriptionParams) {
+export default function AppDescription(props: DescriptionParams) {
   return(
     <TextField
       label="Description"
@@ -13,7 +13,7 @@ export default function AppDescription(props: AppDescriptionParams) {
       multiline
       name="description"
       onChange={(event) => props.handleChange(event)}
-      value={props.appDescription}
+      value={props.description}
     />
   );
 }

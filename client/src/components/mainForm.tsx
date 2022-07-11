@@ -1,15 +1,15 @@
 import { SyntheticEvent, useReducer, useState } from 'react';
 import { Box } from '@mui/material';
 import { Dependency, VCPKGManifest } from '../types'
-import AppDescription from './AppDescription';
-import AppName from './AppName'
-import AppVersion from './AppVersion';
 import ClearForm from './ClearForm';
 import DependenciesSection from './DependenciesSection';
 import DependencyPicker from './DependencyPicker';
+import Description from './Description';
 import generateJSON from '../generateJSON';
 import GenerateFileButton from './GenerateFileButton';
 import GeneratingAlert from './GeneratingAlert';
+import Name from './Name'
+import Version from './Version';
 
 const initialState: VCPKGManifest = {
   name: '',
@@ -88,13 +88,13 @@ function MainForm() {
       <Box>
         <fieldset disabled={generating}>
           <div>
-            <AppName appName={formData.name} handleChange={handleChange}/>
+            <Name name={formData.name} handleChange={handleChange}/>
           </div>
           <div>
-            <AppVersion appVersion={formData.version} handleChange={handleChange}/>
+            <Version version={formData.version} handleChange={handleChange}/>
           </div>
           <div>
-            <AppDescription appDescription={formData.description} handleChange={handleChange}/>
+            <Description description={formData.description} handleChange={handleChange}/>
           </div>
           <div>
             <DependencyPicker dependencies={formData.dependencies} handleChange={handleSelectChange}/>
