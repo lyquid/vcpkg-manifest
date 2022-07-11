@@ -5,12 +5,12 @@ export default function generateJSON(formData: VCPKGManifest) {
   // sort and manipulate the data to match vcpkg.json format
   const data: VCPKGManifest = JSON.parse(JSON.stringify(formData)); // deep copy, no changes to the form
   const dependencies: string[] = [];
-  for (let dependency of data.dependencies.sort(compareDependencies)) {
-    dependencies.push(dependency.library);
+  for (const dependency of data.dependencies.sort(compareDependencies)) {
+    dependencies.push(dependency.library.toLowerCase());
   }
   const finalData = {
     $schema:      'https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json',
-    name:         data.name,
+    name:         data.name.toLowerCase(),
     version:      data.version,
     description:  data.description,
     dependencies: dependencies

@@ -18,14 +18,14 @@ const initialState: VCPKGManifest = {
   dependencies: []
 };
 
-const formReducer = (state: VCPKGManifest, action: any) => {
-  return {
-    ...state,
-    [action.name]: action.value
-  }
-}
-
 function MainForm() {
+  const formReducer = (state: VCPKGManifest, action: any) => {
+    return {
+      ...state,
+      [action.name]: action.value
+    }
+  }
+
   const [formData, setFormData] = useReducer(formReducer, initialState);
   const [generating, setGenerating] = useState(false);
 
