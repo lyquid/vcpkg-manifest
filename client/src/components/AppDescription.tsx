@@ -1,8 +1,8 @@
 import { TextField } from "@mui/material";
 
 interface AppDescriptionParams {
-  appDescription: string,
-  handleChange:   Function
+  appDescription?: string,
+  handleChange:    Function
 };
 
 export default function AppDescription(props: AppDescriptionParams) {
