@@ -1,6 +1,7 @@
 import { SyntheticEvent, useReducer, useState } from 'react';
 import { Box } from '@mui/material';
 import { Dependency, VCPKGManifest } from '../types'
+import AppDescription from './AppDescription';
 import AppName from './AppName'
 import AppVersion from './AppVersion';
 import ClearForm from './ClearForm';
@@ -13,6 +14,7 @@ import GeneratingAlert from './GeneratingAlert';
 const initialState: VCPKGManifest = {
   name: '',
   version: '',
+  description: '',
   dependencies: []
 };
 
@@ -34,6 +36,10 @@ function MainForm() {
     });
     setFormData({
       name: 'version',
+      value: '',
+    });
+    setFormData({
+      name: 'description',
       value: '',
     });
     setFormData({
@@ -86,6 +92,9 @@ function MainForm() {
           </div>
           <div>
             <AppVersion appVersion={formData.version} handleChange={handleChange}/>
+          </div>
+          <div>
+            <AppDescription appDescription={formData.description} handleChange={handleChange}/>
           </div>
           <div>
             <DependencyPicker dependencies={formData.dependencies} handleChange={handleSelectChange}/>
