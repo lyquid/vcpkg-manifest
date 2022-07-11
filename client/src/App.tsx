@@ -1,16 +1,32 @@
 import { Route, Routes } from "react-router-dom";
+import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import MainForm from "./components/MainForm";
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+    // background: {
+    //   default: 'black',
+    // }
+  }
+});
+
+const lightTheme = createTheme({
+  palette: {
+    mode: 'light'
+  }
+});
 
 const App = () => {
   return (
-    <div>
-      {/* <Navbar/> */}
-      <Routes>
-        <Route path="/" element={<MainForm/>}/>
-        {/* <Route path="/edit/:id" element={<Edit/>}/>
-        <Route path="/create" element={<Create/>}/> */}
-      </Routes>
-    </div>
+    <ThemeProvider theme={lightTheme}>
+      <CssBaseline/>
+      <main>
+        <Routes>
+          <Route path="/" element={<MainForm/>}/>
+        </Routes>
+      </main>
+    </ThemeProvider>
   );
 };
 
