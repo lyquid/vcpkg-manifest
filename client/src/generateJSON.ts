@@ -9,11 +9,12 @@ export default function generateJSON(formData: VCPKGManifest) {
     dependencies.push(dependency.library.toLowerCase());
   }
   const finalData = {
-    $schema:      'https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json',
-    name:         data.name.toLowerCase(),
-    version:      data.version,
-    description:  data.description,
-    dependencies: dependencies
+    $schema:            'https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json',
+    name:               data.name.toLowerCase(),
+    version:            data.version,
+    description:        data.description,
+    dependencies:       dependencies,
+    'builtin-baseline': data.builtinBaseline
   };
   // create & return file
   return new Blob([JSON.stringify(finalData, null, 2)], { type: contentType });

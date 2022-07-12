@@ -1,6 +1,7 @@
 import { SyntheticEvent, useReducer, useState } from 'react';
 import { Box } from '@mui/material';
 import { Dependency, VCPKGManifest } from '../types'
+import BuiltinBaseline from './BuiltinBaseline';
 import ClearForm from './ClearForm';
 import DependenciesSection from './DependenciesSection';
 import DependencyPicker from './DependencyPicker';
@@ -15,7 +16,8 @@ const initialState: VCPKGManifest = {
   name: '',
   version: '',
   description: '',
-  dependencies: []
+  dependencies: [],
+  builtinBaseline: ''
 };
 
 function MainForm() {
@@ -46,6 +48,10 @@ function MainForm() {
       name: 'dependencies',
       value: [],
     });
+    setFormData({
+      name: 'builtinBaseline',
+      value: '',
+    });
   }
 
   const generateFile = (): void => {
@@ -62,6 +68,7 @@ function MainForm() {
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    console.log(event);
     setFormData({
       name: event.target.name,
       value: event.target.value
@@ -95,6 +102,9 @@ function MainForm() {
           </div>
           <div>
             <Description description={formData.description} handleChange={handleChange}/>
+          </div>
+          <div>
+            <BuiltinBaseline builtinBaseline={formData.builtinBaseline} handleChange={handleChange}/>
           </div>
           <div>
             <DependencyPicker dependencies={formData.dependencies} handleChange={handleSelectChange}/>
