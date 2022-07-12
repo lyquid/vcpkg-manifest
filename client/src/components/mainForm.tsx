@@ -10,6 +10,7 @@ import generateJSON from '../generateJSON';
 import GenerateFileButton from './GenerateFileButton';
 import GeneratingAlert from './GeneratingAlert';
 import Name from './Name'
+import Title from './Title';
 import Version from './Version';
 
 const initialState: VCPKGManifest = {
@@ -68,7 +69,6 @@ function MainForm() {
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    console.log(event);
     setFormData({
       name: event.target.name,
       value: event.target.value
@@ -92,6 +92,7 @@ function MainForm() {
   return(
     <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '75ch' }}} autoComplete="on">
       {generating && <GeneratingAlert/>}
+      <Title/>
       <Box>
         <fieldset disabled={generating}>
           <div>
