@@ -1,11 +1,11 @@
 export type Dependency = {
-  library: string,
+  name:    string,
   version: string
 };
 
 export function compareDependencies(a: Dependency, b: Dependency) {
-  if (a.library.toLocaleLowerCase() < b.library.toLocaleLowerCase()) return -1;
-  if (a.library.toLocaleLowerCase() > b.library.toLocaleLowerCase()) return 1;
+  if (a.name.toLocaleLowerCase() < b.name.toLocaleLowerCase()) return -1;
+  if (a.name.toLocaleLowerCase() > b.name.toLocaleLowerCase()) return 1;
   return 0;
 }
 

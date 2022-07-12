@@ -3,15 +3,15 @@ import { Autocomplete, TextField } from '@mui/material';
 import { compareDependencies, Dependency } from '../types'
 
 const mockDepencencies: Dependency[] = [
-  {library: 'gTest', version: ''},
-  {library: 'boost', version: ''},
-  {library: 'SDL2', version: ''},
-  {library: 'ZZtop', version: ''},
-  {library: 'SFML', version: ''},
-  {library: 'abc', version: ''},
-  {library: 'Acb', version: ''},
-  {library: 'Abc', version: ''},
-  {library: 'glm', version: ''}
+  {name: 'gTest', version: ''},
+  {name: 'boost', version: ''},
+  {name: 'SDL2', version: ''},
+  {name: 'ZZtop', version: ''},
+  {name: 'SFML', version: ''},
+  {name: 'abc', version: ''},
+  {name: 'Acb', version: ''},
+  {name: 'Abc', version: ''},
+  {name: 'glm', version: ''}
 ];
 
 interface PickerParams {
@@ -43,13 +43,11 @@ export default function DependencyPicker(props: PickerParams) {
     <Autocomplete
       multiple
       options={mockDepencencies.sort(compareDependencies)}
-      // options={records}
-      isOptionEqualToValue={(option, value) => option.library === value.library }
+      isOptionEqualToValue={(option, value) => option.name === value.name }
       filterSelectedOptions
-      getOptionLabel={(option) => option.library}
+      getOptionLabel={(option) => option.name}
       onChange={(event, value) => props.handleChange(event, value)}
       value={props.dependencies}
-      // value={records}
       renderInput={(params) => (
         <TextField {...params} variant="standard" label="Dependencies"/>
       )}

@@ -1,4 +1,4 @@
-import { SyntheticEvent, useReducer, useState } from 'react';
+import { useReducer, useState } from 'react';
 import { Box } from '@mui/material';
 import { Dependency, VCPKGManifest } from '../types'
 import BuiltinBaseline from './BuiltinBaseline';
