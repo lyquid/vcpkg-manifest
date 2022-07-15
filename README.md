@@ -1,3 +1,5 @@
+[![Dependency Review](https://github.com/lyquid/vcpkg-manifest/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/lyquid/vcpkg-manifest/actions/workflows/dependency-review.yml)
+
 # VCPKG Manifest
 
 A webpage to generate your vcpkg.json files!
