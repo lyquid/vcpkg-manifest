@@ -1,4 +1,5 @@
 import { TextField } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 interface NameParams {
   name:         string,
@@ -6,9 +7,10 @@ interface NameParams {
 };
 
 export default function Name(props: NameParams) {
+  const { t } = useTranslation();
   return(
     <TextField
-      label="App name"
+      label={t('mainForm.app-name')}
       name="name"
       onChange={(event) => props.handleChange(event)}
       value={props.name}
