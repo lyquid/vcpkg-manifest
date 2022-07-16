@@ -1,0 +1,11 @@
+{
+  "mainForm": {
+    "app-name": "Nom de l'aplicació",
+    "version": "Versió",
+    "description": "Descripció",
+    "dependencies": "Dependéncies",
+    "generate-file": "Generar vcpkg.json",
+    "generating-alert": "Generant vcpkg.json",
+    "clear-form": "Esborra els camps"
+  }
+}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Autocomplete, TextField } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import { compareDependencies, Dependency } from '../types'
 
 const mockDepencencies: Dependency[] = [
@@ -21,10 +22,12 @@ interface PickerParams {
 
 export default function DependencyPicker(props: PickerParams) {
   const [records, setRecords] = useState([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     async function getLibraries() {
       const response = await fetch(`http://localhost:5000/libraries/`);
+      // const response = await fetch(`https://frozen-castle-16536.herokuapp.com/https://vcpkg-manifest.herokuapp.com/libraries/`);
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
         window.alert(message);
@@ -49,7 +52,7 @@ export default function DependencyPicker(props: PickerParams) {
       onChange={(event, value) => props.handleChange(event, value)}
       value={props.dependencies}
       renderInput={(params) => (
-        <TextField {...params} variant="standard" label="Dependencies"/>
+        <TextField {...params} variant="standard" label={t('mainForm.dependencies')}/>
       )}
     />
   );
