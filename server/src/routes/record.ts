@@ -11,8 +11,7 @@ const recordRoutes = express.Router();
 const ObjectId = require("mongodb").ObjectId;
 
 recordRoutes.route("/").get((req: express.Request, res: express.Response) => {
-  const buildPath = path.join(__dirname, '../build', 'index.html');
-  res.sendFile(buildPath);
+  res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
 
 // This section will help you get a list of all the records.
