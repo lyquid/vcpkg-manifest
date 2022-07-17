@@ -5,8 +5,9 @@
   "description": "A webpage to generate your vcpkg.json files!",
   "main": "server/src/server.ts",
   "scripts": {
-    "build": "concurrently \"cd server && npm run build\" \"cd client && npm run build\"",
+    "build": "concurrently \"cd server && npm run build\" \"cd client && npm run build\" && npm run cpdir",
     "client": "cd client && npm start",
+    "cpdir": "npx copyfiles -V -a -u 2 client/build/**/*.* server/dist/build/",
     "server": "cd server && npm run dev",
     "start": "cd server && npm start",
     "test": "cd client && npm test"
@@ -58,6 +59,7 @@
     "@types/express": "^4.17.13",
     "@types/node": "^18.0.0",
     "concurrently": "^7.2.2",
+    "copyfiles": "^2.4.1",
     "nodemon": "^2.0.18"
   },
   "browserslist": {

@@ -1,4 +1,5 @@
 import express from "express";
+import path from "path";
 import { database } from "../db/conn";
 
 // recordRoutes is an instance of the express router.
@@ -9,9 +10,13 @@ const recordRoutes = express.Router();
 // This help convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId;
 
+recordRoutes.route("/").get((req: express.Request, res: express.Response) => {
+  const buildPath = path.join(__dirname, '../build', 'index.html');
+  res.sendFile(buildPath);
+});
+
 // This section will help you get a list of all the records.
 recordRoutes.route("/libraries").get((req: express.Request, res: express.Response) => {
-  // let db_connect = dbo.getDb("cluster0");
   let db_connect = database;
   db_connect
     .collection("restaurants")
