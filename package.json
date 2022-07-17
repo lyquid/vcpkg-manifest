@@ -1,0 +1,45 @@
+{
+  "name": "vcpkg-manifest",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A webpage to generate your vcpkg.json files!",
+  "main": "server/src/server.ts",
+  "scripts": {
+    "build": "concurrently \"cd server && npm run build\" \"cd client && npm run build\"",
+    "install": "concurrently \"cd server && npm install\" \"cd client && npm install\"",
+    "client": "cd client && npm start",
+    "server": "cd server && npm run dev",
+    "start": "cd server && npm start",
+    "test": "cd client && npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lyquid/vcpkg-manifest.git"
+  },
+  "keywords": [
+    "vcpkg",
+    "manifest",
+    "json"
+  ],
+  "author": "Alejandro Castillo Blanco <ketepincho@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lyquid/vcpkg-manifest/issues"
+  },
+  "homepage": "https://github.com/lyquid/vcpkg-manifest#readme",
+  "devDependencies": {
+    "concurrently": "^7.2.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

@@ -1,17 +1,12 @@
 {
   "name": "vcpkg-manifest-server",
-  "version": "0.1.0",
-  "description": "",
-  "main": "server.ts",
+  "main": "src/server.ts",
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/server.js",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/server.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
