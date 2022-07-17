@@ -20,7 +20,7 @@ const lngs = {
 };
 
 const App = () => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   return (
     <ThemeProvider theme={appTheme}>
       <CssBaseline/>

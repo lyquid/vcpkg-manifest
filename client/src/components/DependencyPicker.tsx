@@ -26,8 +26,8 @@ export default function DependencyPicker(props: PickerParams) {
 
   useEffect(() => {
     async function getLibraries() {
-      const response = await fetch(`http://localhost:5000/libraries/`);
-      // const response = await fetch(`https://frozen-castle-16536.herokuapp.com/https://vcpkg-manifest.herokuapp.com/libraries/`);
+      // const response = await fetch(`http://localhost:5000/libraries/`);
+      const response = await fetch(`https://frozen-castle-16536.herokuapp.com/https://vcpkg-manifest.herokuapp.com/libraries/`);
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
         window.alert(message);
