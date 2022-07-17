@@ -1,19 +1,8 @@
 {
-  "name": "vcpkg-manifest-server",
-  "main": "src/server.ts",
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/server.js",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/server.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.1",
-    "express": "^4.18.1",
-    "mongodb": "^4.7.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.18"
   }
 }

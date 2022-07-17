@@ -6,7 +6,6 @@
   "main": "server/src/server.ts",
   "scripts": {
     "build": "concurrently \"cd server && npm run build\" \"cd client && npm run build\"",
-    "install": "concurrently \"cd server && npm install\" \"cd client && npm install\"",
     "client": "cd client && npm start",
     "server": "cd server && npm run dev",
     "start": "cd server && npm start",
@@ -28,13 +27,38 @@
   },
   "homepage": "https://github.com/lyquid/vcpkg-manifest#readme",
   "dependencies": {
-    "typescript": "^4.7.4"
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.8.7",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.11.42",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "i18next": "^21.8.14",
+    "i18next-browser-languagedetector": "^6.1.4",
+    "i18next-http-backend": "^1.4.1",
+    "mongodb": "^4.7.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^11.18.1",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.7.4",
+    "web-vitals": "^2.1.4"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/node": "^18.0.0",
-    "concurrently": "^7.2.2"
+    "concurrently": "^7.2.2",
+    "nodemon": "^2.0.18"
   },
   "browserslist": {
     "production": [
