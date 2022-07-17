@@ -1,0 +1,11 @@
+{
+  "mainForm": {
+    "app-name": "Nombre de la aplicación",
+    "version": "Versión",
+    "description": "Descripción",
+    "dependencies": "Dependencias",
+    "generate-file": "Generar vcpkg.json",
+    "generating-alert": "Generando vcpkg.json",
+    "clear-form": "Reinicia los campos"
+  }
+}
