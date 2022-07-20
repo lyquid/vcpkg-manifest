@@ -12,6 +12,6 @@ app.use(express.json());
 app.use(require("./routes/record"));
 app.use(express.static(path.join(__dirname, 'build')));
 app.listen(port, () => {
-  connectToDatabase();
+  // connectToDatabase();
   console.log(`Server is running on port: ${port}`);
 });

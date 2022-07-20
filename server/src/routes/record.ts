@@ -14,17 +14,21 @@ recordRoutes.route("/").get((req: express.Request, res: express.Response) => {
   res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
 
-// This section will help you get a list of all the records.
 recordRoutes.route("/libraries").get((req: express.Request, res: express.Response) => {
-  let db_connect = database;
-  db_connect
-    .collection("restaurants")
-    .find({})
-    .toArray((err: any, result: any) => {
-      if (err) throw err;
-      res.json(result);
-    });
+  res.sendFile(path.join(__dirname, '../', 'libraries.json'));
 });
+
+// This section will help you get a list of all the records.
+// recordRoutes.route("/libraries").get((req: express.Request, res: express.Response) => {
+//   let db_connect = database;
+//   db_connect
+//     .collection("restaurants")
+//     .find({})
+//     .toArray((err: any, result: any) => {
+//       if (err) throw err;
+//       res.json(result);
+//     });
+// });
 
 // This section will help you get a single record by id
 // recordRoutes.route("/record/:id").get((req: express.Request, res: express.Response) => {
