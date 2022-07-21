@@ -14,7 +14,7 @@ export default function DependenciesList(props: ListParams) {
         <DeleteIcon/>
       </IconButton>
     }>
-      <ListItemText primary={dependency.name} secondary={"sec text"/* secondary ? 'Secondary text' : null */}/>
+      <ListItemText primary={dependency.name} secondary={dependency.description}/>
       {/* {dependency.library}, {dependency.version || "default version"} */}
     </ListItem>
   );

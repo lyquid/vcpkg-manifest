@@ -1,6 +1,7 @@
 export type Dependency = {
-  name:    string,
-  version: string
+  name:         string,
+  version:      string,
+  description?: string
 };
 
 export function compareDependencies(a: Dependency, b: Dependency) {
@@ -13,6 +14,6 @@ export type VCPKGManifest = {
   name:             string,
   version:          string,
   description?:     string,
-  dependencies:     Dependency[],
+  dependencies?:    Dependency[],
   builtinBaseline?: string
 };
