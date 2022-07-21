@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useState } from 'react';
 import { Box } from '@mui/material';
 import { Dependency, VCPKGManifest } from '../types'
-import BuiltinBaseline from './BuiltinBaseline';
+// import BuiltinBaseline from './BuiltinBaseline';
 import ClearForm from './ClearForm';
 import DependenciesSection from './DependenciesSection';
 import DependencyPicker from './DependencyPicker';
@@ -17,8 +17,8 @@ const initialState: VCPKGManifest = {
   name: '',
   version: '',
   description: '',
-  dependencies: [],
-  builtinBaseline: ''
+  dependencies: []
+  // builtinBaseline: ''
 };
 
 function MainForm() {
@@ -138,9 +138,9 @@ function MainForm() {
           <div>
             <Description description={form_data.description} handleChange={handleChange}/>
           </div>
-          <div>
+          {/* <div>
             <BuiltinBaseline builtinBaseline={form_data.builtinBaseline} handleChange={handleChange}/>
-          </div>
+          </div> */}
           <div>
             <DependencyPicker dependencies={form_data.dependencies as Dependency[]} dependencies_list={dependencies_list} handleChange={handleSelectChange}/>
           </div>
