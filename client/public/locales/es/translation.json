@@ -1,4 +1,7 @@
 {
+  "app": {
+    "loading": "Cargando"
+  },
   "mainForm": {
     "app-name": "Nombre de la aplicación",
     "version": "Versión",
@@ -7,5 +10,8 @@
     "generate-file": "Generar vcpkg.json",
     "generating-alert": "Generando vcpkg.json",
     "clear-form": "Reinicia los campos"
+  },
+  "topBar": {
+    "languages": "Idiomas"
   }
 }
