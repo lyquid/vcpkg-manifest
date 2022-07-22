@@ -7,6 +7,7 @@
     "version": "Ausführung",
     "description": "Beschreibung",
     "dependencies": "Abhängigkeiten",
+    "fetching-data": "Daten der Bibliotheken vom Server abrufen",
     "generate-file": "Generieren vcpkg.json",
     "generating-alert": "Generieren von vcpkg.json",
     "clear-form": "Leere Felder"

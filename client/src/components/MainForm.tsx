@@ -1,4 +1,5 @@
 import { useEffect, useReducer, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
 import { Dependency, VCPKGManifest } from '../types'
 // import BuiltinBaseline from './BuiltinBaseline';
@@ -22,6 +23,7 @@ const initialState: VCPKGManifest = {
 };
 
 function MainForm() {
+  const { t } = useTranslation();
   const formReducer = (state: VCPKGManifest, action: any) => {
     return {
       ...state,
@@ -128,7 +130,7 @@ function MainForm() {
       <TopBar/>
       {generating && <GeneratingAlert/>}
       <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '75ch' }}} autoComplete="on">
-        {loading && <Box>FETCHING LIBRARIES' DATA FROM SERVER</Box>}
+        {loading && <Box>{t('mainForm.fetching-data')}</Box>}
         {!loading && <Box>
           <fieldset disabled={generating}>
             <div>

@@ -7,6 +7,7 @@
     "version": "Versió",
     "description": "Descripció",
     "dependencies": "Dependéncies",
+    "fetching-data": "Obtenint les dades de les llibreries del servidor",
     "generate-file": "Generar vcpkg.json",
     "generating-alert": "Generant vcpkg.json",
     "clear-form": "Esborra els camps"
