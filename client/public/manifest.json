@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "vcpkg manifest",
+  "name": "vcpkg maniffest generation website",
   "icons": [
     {
       "src": "favicon.ico",
