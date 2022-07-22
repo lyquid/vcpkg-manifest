@@ -1,11 +1,11 @@
-import { compareDependencies, VCPKGManifest } from './types'
+import { compareDependencies, Dependency, VCPKGManifest } from './types'
 
 export default function generateJSON(formData: VCPKGManifest) {
   const contentType = "text/plain";
   // sort and manipulate the data to match vcpkg.json format
   const data: VCPKGManifest = JSON.parse(JSON.stringify(formData)); // deep copy, no changes to the form
   const dependencies: string[] = [];
-  for (const dependency of data.dependencies.sort(compareDependencies)) {
+  for (const dependency of (data.dependencies as Dependency[]).sort(compareDependencies)) {
     dependencies.push(dependency.name.toLowerCase());
   }
   const finalData = {
