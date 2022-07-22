@@ -43,8 +43,8 @@ function MainForm() {
 
   useEffect(() => {
     async function fetchLibraries() {
-      // const response = await fetch(`https://frozen-castle-16536.herokuapp.com/https://vcpkg-manifest.herokuapp.com/libraries/`);
-      const response = await fetch(`http://localhost:5000/libraries/`);
+      const response = await fetch(`https://frozen-castle-16536.herokuapp.com/https://vcpkg-manifest.herokuapp.com/libraries/`);
+      // const response = await fetch(`http://localhost:5000/libraries/`);
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
         console.error(message);
