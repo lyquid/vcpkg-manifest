@@ -1,11 +1,18 @@
 {
+  "app": {
+    "loading": "Cargando"
+  },
   "mainForm": {
     "app-name": "Nombre de la aplicación",
     "version": "Versión",
     "description": "Descripción",
     "dependencies": "Dependencias",
+    "fetching-data": "Obteniendo los datos de las librerias del servidor",
     "generate-file": "Generar vcpkg.json",
     "generating-alert": "Generando vcpkg.json",
     "clear-form": "Reinicia los campos"
+  },
+  "topBar": {
+    "languages": "Idiomas"
   }
 }

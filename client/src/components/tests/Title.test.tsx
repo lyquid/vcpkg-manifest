@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react';
 import { unmountComponentAtNode } from "react-dom";
-import Title from '../Title';
+import { Logo, LogoSlim } from '../Logo';
 
 let container: any; // :(
 
@@ -20,6 +20,6 @@ afterEach(() => {
 
 it("renders the title", () => {
   const title = 'VCPKG MANIFEST';
-  render(<Title/>, container);
+  render(<Logo/>, container);
   expect(screen.getByText(title)).toBeInTheDocument();
 });

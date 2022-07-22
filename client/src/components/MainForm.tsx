@@ -1,4 +1,5 @@
 import { useEffect, useReducer, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
 import { Dependency, VCPKGManifest } from '../types'
 // import BuiltinBaseline from './BuiltinBaseline';
@@ -10,7 +11,7 @@ import generateJSON from '../generateJSON';
 import GenerateFileButton from './GenerateFileButton';
 import GeneratingAlert from './GeneratingAlert';
 import Name from './Name'
-import Title from './Title';
+import TopBar from './TopBar';
 import Version from './Version';
 
 const initialState: VCPKGManifest = {
@@ -22,6 +23,7 @@ const initialState: VCPKGManifest = {
 };
 
 function MainForm() {
+  const { t } = useTranslation();
   const formReducer = (state: VCPKGManifest, action: any) => {
     return {
       ...state,
@@ -41,7 +43,8 @@ function MainForm() {
 
   useEffect(() => {
     async function fetchLibraries() {
-      const response = await fetch(`https://frozen-castle-16536.herokuapp.com/https://vcpkg-manifest.herokuapp.com/libraries/`);
+      // const response = await fetch(`https://frozen-castle-16536.herokuapp.com/https://vcpkg-manifest.herokuapp.com/libraries/`);
+      const response = await fetch(`http://localhost:5000/libraries/`);
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
         console.error(message);
@@ -123,41 +126,43 @@ function MainForm() {
   }
 
   return(
-    <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '75ch' }}} autoComplete="on">
+    <Box>
+      <TopBar/>
       {generating && <GeneratingAlert/>}
-      <Title/>
-      {loading && <Box>FETCHING LIBRARIES' DATA FROM SERVER</Box>}
-      {!loading && <Box>
-        <fieldset disabled={generating}>
-          <div>
-            <Name name={form_data.name} handleChange={handleChange}/>
-          </div>
-          <div>
-            <Version version={form_data.version} handleChange={handleChange}/>
-          </div>
-          <div>
-            <Description description={form_data.description} handleChange={handleChange}/>
-          </div>
-          {/* <div>
-            <BuiltinBaseline builtinBaseline={form_data.builtinBaseline} handleChange={handleChange}/>
-          </div> */}
-          <div>
-            <DependencyPicker dependencies={form_data.dependencies as Dependency[]} dependencies_list={dependencies_list} handleChange={handleSelectChange}/>
-          </div>
-          <div>
-            <GenerateFileButton generateFunc={generateFile}/>
-            <ClearForm clearFunc={clearForm}/>
-          </div>
-        </fieldset>
-      </Box>}
+      <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '75ch' }}} autoComplete="on">
+        {loading && <Box>{t('mainForm.fetching-data')}</Box>}
+        {!loading && <Box>
+          <fieldset disabled={generating}>
+            <div>
+              <Name name={form_data.name} handleChange={handleChange}/>
+            </div>
+            <div>
+              <Version version={form_data.version} handleChange={handleChange}/>
+            </div>
+            <div>
+              <Description description={form_data.description} handleChange={handleChange}/>
+            </div>
+            {/* <div>
+              <BuiltinBaseline builtinBaseline={form_data.builtinBaseline} handleChange={handleChange}/>
+            </div> */}
+            <div>
+              <DependencyPicker dependencies={form_data.dependencies as Dependency[]} dependencies_list={dependencies_list} handleChange={handleSelectChange}/>
+            </div>
+            <div>
+              <GenerateFileButton generateFunc={generateFile}/>
+              <ClearForm clearFunc={clearForm}/>
+            </div>
+          </fieldset>
+        </Box>}
 
-      {(form_data.dependencies as Dependency[]).length > 0 &&
-        <DependenciesSection
-          dependencies={form_data.dependencies as Dependency[]}
-          generating={generating}
-          removeFunc={removeDependency}
-        />
-      }
+        {(form_data.dependencies as Dependency[]).length > 0 &&
+          <DependenciesSection
+            dependencies={form_data.dependencies as Dependency[]}
+            generating={generating}
+            removeFunc={removeDependency}
+          />
+        }
+      </Box>
     </Box>
   );
 }

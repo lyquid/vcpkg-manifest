@@ -1,11 +1,18 @@
 {
+  "app": {
+    "loading": "Wird geladen"
+  },
   "mainForm": {
-    "app-name": "App name",
-    "version": "Version",
-    "description": "Description",
-    "dependencies": "Dependencies",
-    "generate-file": "Generate vcpkg.json",
-    "generating-alert": "Generating vcpkg.json",
-    "clear-form": "Clear fields"
+    "app-name": "Anwendungsname",
+    "version": "Ausführung",
+    "description": "Beschreibung",
+    "dependencies": "Abhängigkeiten",
+    "fetching-data": "Daten der Bibliotheken vom Server abrufen",
+    "generate-file": "Generieren vcpkg.json",
+    "generating-alert": "Generieren von vcpkg.json",
+    "clear-form": "Leere Felder"
+  },
+  "topBar": {
+    "languages": "Sprachen"
   }
 }
