@@ -5,7 +5,6 @@ interface FetchingBackdropParams {
   loading: boolean
 };
 
-
 export default function FetchingBackdrop(props: FetchingBackdropParams) {
   const { t } = useTranslation();
   return(
