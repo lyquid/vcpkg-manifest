@@ -2,14 +2,17 @@
   "app": {
     "loading": "Carregant"
   },
+  "generatingAlert": {
+    "info": "Generant vcpkg.json",
+    "working": "Treballant"
+  },
   "mainForm": {
     "app-name": "Nom de l'aplicació",
     "version": "Versió",
     "description": "Descripció",
     "dependencies": "Dependéncies",
-    "fetching-data": "Obtenint les dades de les llibreries del servidor",
+    "fetching-data": "Obtenint les dades de les llibreries des del servidor",
     "generate-file": "Generar vcpkg.json",
-    "generating-alert": "Generant vcpkg.json",
     "clear-form": "Esborra els camps"
   },
   "topBar": {

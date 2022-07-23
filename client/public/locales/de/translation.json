@@ -2,6 +2,10 @@
   "app": {
     "loading": "Wird geladen"
   },
+  "generatingAlert": {
+    "info": "Generieren von vcpkg.json",
+    "working": ""
+  },
   "mainForm": {
     "app-name": "Anwendungsname",
     "version": "Ausführung",
@@ -9,7 +13,6 @@
     "dependencies": "Abhängigkeiten",
     "fetching-data": "Daten der Bibliotheken vom Server abrufen",
     "generate-file": "Generieren vcpkg.json",
-    "generating-alert": "Generieren von vcpkg.json",
     "clear-form": "Leere Felder"
   },
   "topBar": {
