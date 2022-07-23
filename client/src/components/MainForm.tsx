@@ -80,7 +80,7 @@ function MainForm(props: MainFormParams) {
       name: 'description',
       value: '',
     });
-    setFormData({
+    setFormData({git
       name: 'dependencies',
       value: [],
     });
@@ -113,7 +113,7 @@ function MainForm(props: MainFormParams) {
 
   return(
     <Box>
-      
+
       <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '75ch' }}} autoComplete="on" alignItems="center" display="flex" justifyContent="center">
         <FetchingBackdrop loading={loading}/>
         {!loading && <Box>
