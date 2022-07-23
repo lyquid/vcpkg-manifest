@@ -7,12 +7,14 @@ import DependenciesSection from './DependenciesSection';
 import DependencyPicker from './DependencyPicker';
 import Description from './Description';
 import FetchingBackdrop from './FetchingBackdrop';
-import generateJSON from '../generateJSON';
 import GenerateFileButton from './GenerateFileButton';
-import GeneratingAlert from './GeneratingAlert';
 import Name from './Name'
-import TopBar from './TopBar';
 import Version from './Version';
+
+interface MainFormParams {
+  generateFile: Function,
+  generating:   boolean
+};
 
 const initialState: VCPKGManifest = {
   name: '',
@@ -22,7 +24,7 @@ const initialState: VCPKGManifest = {
   // builtinBaseline: ''
 };
 
-function MainForm() {
+function MainForm(props: MainFormParams) {
   const formReducer = (state: VCPKGManifest, action: any) => {
     return {
       ...state,
@@ -31,8 +33,6 @@ function MainForm() {
   }
 
   const [form_data, setFormData] = useReducer(formReducer, initialState);
-  // hook to show the generating alert
-  const [generating, setGenerating] = useState(false);
   // hook for fetched libraries
   const [json_libraries, setJSONLibraries] = useState([]);
   // hook for the dependencies list
@@ -90,19 +90,6 @@ function MainForm() {
     });
   }
 
-  const generateFile = (): void => {
-    // disable fields
-    setGenerating(true);
-    // create file, link & download
-    const fileName = 'vcpkg.json';
-    const link = document.createElement("a");
-		link.href = URL.createObjectURL(generateJSON(form_data));
-		link.download = fileName;
-		link.click();
-    // re-enable fields after x time
-    setTimeout(() => { setGenerating(false); }, 1000);
-  }
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setFormData({
       name: event.target.name,
@@ -126,13 +113,12 @@ function MainForm() {
 
   return(
     <Box>
-      {generating && <GeneratingAlert/>}
       <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '75ch' }}} autoComplete="on" alignItems="center" display="flex" justifyContent="center">
 
         <FetchingBackdrop loading={loading}/>
 
         {!loading && <Box>
-            <fieldset disabled={generating}>
+            <fieldset disabled={props.generating}>
               <div>
               <Name name={form_data.name} handleChange={handleChange}/>
             </div>
@@ -149,7 +135,7 @@ function MainForm() {
               <DependencyPicker dependencies={form_data.dependencies as Dependency[]} dependencies_list={dependencies_list} handleChange={handleSelectChange}/>
             </div>
             <div>
-              <GenerateFileButton generateFunc={generateFile}/>
+              <GenerateFileButton generateFunc={() => props.generateFile(form_data)}/>
               <ClearForm clearFunc={clearForm}/>
             </div>
           </fieldset>
@@ -158,7 +144,7 @@ function MainForm() {
         {(form_data.dependencies as Dependency[]).length > 0 &&
           <DependenciesSection
             dependencies={form_data.dependencies as Dependency[]}
-            generating={generating}
+            generating={props.generating}
             removeFunc={removeDependency}
           />
         }
