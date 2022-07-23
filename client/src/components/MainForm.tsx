@@ -7,6 +7,7 @@ import ClearForm from './ClearForm';
 import DependenciesSection from './DependenciesSection';
 import DependencyPicker from './DependencyPicker';
 import Description from './Description';
+import FetchingBackdrop from './FetchingBackdrop';
 import generateJSON from '../generateJSON';
 import GenerateFileButton from './GenerateFileButton';
 import GeneratingAlert from './GeneratingAlert';
@@ -43,7 +44,7 @@ function MainForm() {
 
   useEffect(() => {
     async function fetchLibraries() {
-      const response = await fetch(`https://frozen-castle-16536.herokuapp.com/https://vcpkg-manifest.herokuapp.com/libraries/`);
+      const response = await fetch('https://frozen-castle-16536.herokuapp.com/https://vcpkg-manifest.herokuapp.com/libraries/');
       // const response = await fetch(`http://localhost:5000/libraries/`);
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
@@ -95,7 +96,7 @@ function MainForm() {
     // disable fields
     setGenerating(true);
     // create file, link & download
-    const fileName = "vcpkg.json";
+    const fileName = 'vcpkg.json';
     const link = document.createElement("a");
 		link.href = URL.createObjectURL(generateJSON(form_data));
 		link.download = fileName;
@@ -113,7 +114,7 @@ function MainForm() {
 
   const handleSelectChange = (event: React.SyntheticEvent, value: Dependency[]): void => {
     setFormData({
-      name: "dependencies", // ugly hack!
+      name: 'dependencies',
       value: value
     });
   }
@@ -130,7 +131,9 @@ function MainForm() {
       <TopBar/>
       {generating && <GeneratingAlert/>}
       <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '75ch' }}} autoComplete="on">
-        {loading && <Box>{t('mainForm.fetching-data')}</Box>}
+
+        <FetchingBackdrop loading={loading}/>
+
         {!loading && <Box>
           <fieldset disabled={generating}>
             <div>
