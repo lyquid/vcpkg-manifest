@@ -113,10 +113,9 @@ function MainForm(props: MainFormParams) {
 
   return(
     <Box>
+      
       <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '75ch' }}} autoComplete="on" alignItems="center" display="flex" justifyContent="center">
-
         <FetchingBackdrop loading={loading}/>
-
         {!loading && <Box>
             <fieldset disabled={props.generating}>
               <div>
@@ -140,7 +139,9 @@ function MainForm(props: MainFormParams) {
             </div>
           </fieldset>
         </Box>}
+      </Box>
 
+      <Box>
         {(form_data.dependencies as Dependency[]).length > 0 &&
           <DependenciesSection
             dependencies={form_data.dependencies as Dependency[]}
@@ -149,6 +150,7 @@ function MainForm(props: MainFormParams) {
           />
         }
       </Box>
+
     </Box>
   );
 }
