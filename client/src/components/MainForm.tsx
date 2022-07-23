@@ -80,7 +80,7 @@ function MainForm(props: MainFormParams) {
       name: 'description',
       value: '',
     });
-    setFormData({git
+    setFormData({
       name: 'dependencies',
       value: [],
     });
