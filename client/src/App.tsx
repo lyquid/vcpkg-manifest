@@ -1,7 +1,8 @@
 import { Suspense } from "react";
 import { useTranslation } from 'react-i18next';
-import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import { Box, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import MainForm from "./components/MainForm";
+import TopBar from "./components/TopBar";
 
 const appTheme = createTheme({
   palette: {
@@ -17,7 +18,10 @@ const App = () => {
     <ThemeProvider theme={appTheme}>
       <CssBaseline/>
       <main>
-        <MainForm/>
+        <Box>
+          <TopBar/>
+          <MainForm/>
+        </Box>
       </main>
     </ThemeProvider>
   );
