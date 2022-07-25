@@ -1,19 +1,22 @@
-import { Button } from '@mui/material';
-import { useTranslation } from "react-i18next";
+import { Fab } from '@mui/material';
+import DownloadIcon from '@mui/icons-material/Download';
 
 interface GenerateParams {
   generateFunc: Function
 };
 
 export default function GenerateFileButton(props: GenerateParams) {
-  const { t } = useTranslation();
   return(
-    <Button
-      variant="contained"
+    <Fab
+      sx={{
+        position: "fixed",
+        bottom: (theme) => theme.spacing(2),
+        right: (theme) => theme.spacing(2)
+      }}
       color="primary"
-      onClick={() => props.generateFunc()}
-    >
-      {t('mainForm.generate-file')}
-    </Button>
+      aria-label="download file"
+      onClick={() => props.generateFunc()}>
+      <DownloadIcon/>
+    </Fab>
   )
 }

@@ -12,7 +12,6 @@
     "description": "Descripción",
     "dependencies": "Dependencias",
     "fetching-data": "Obteniendo los datos de las librerias desde el servidor",
-    "generate-file": "Generar vcpkg.json",
     "clear-form": "Reinicia los campos"
   },
   "topBar": {
