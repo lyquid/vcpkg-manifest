@@ -14,6 +14,7 @@ export default function Name(props: NameParams) {
       name="name"
       onChange={(event) => props.handleChange(event)}
       value={props.name}
+      fullWidth
     />
   );
 }

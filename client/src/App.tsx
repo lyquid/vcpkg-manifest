@@ -1,6 +1,6 @@
 import { Suspense, useState } from "react";
 import { useTranslation } from 'react-i18next';
-import { Box, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import generateJSON from "./generateJSON";
 import GeneratingAlert from "./components/GeneratingAlert";
 import MainForm from "./components/MainForm";
@@ -37,11 +37,9 @@ const App = () => {
     <ThemeProvider theme={appTheme}>
       <CssBaseline/>
       <main>
-        <Box>
-          <TopBar/>
-          {generating && <GeneratingAlert/>}
-          <MainForm generateFile={generateFile} generating={generating}/>
-        </Box>
+        <TopBar/>
+        {generating && <GeneratingAlert/>}
+        <MainForm generateFile={generateFile} generating={generating}/>
       </main>
     </ThemeProvider>
   );
