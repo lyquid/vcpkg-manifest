@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 
-const logo_string = 'VCPKG MANIFEST';
+export const LOGO_STRING = 'VCPKG MANIFEST';
 
 export function Logo() {
   return(
@@ -11,7 +11,7 @@ export function Logo() {
       href="/"
       sx={{
         mr: 2,
-        display: { xs: 'none', md: 'flex' },
+        display: 'flex',
         fontFamily: 'monospace',
         fontWeight: 700,
         letterSpacing: '.3rem',
@@ -19,7 +19,7 @@ export function Logo() {
         textDecoration: 'none'
       }}
     >
-      {logo_string}
+      {LOGO_STRING}
     </Typography>
   );
 }
@@ -42,7 +42,7 @@ export function LogoSlim() {
         textDecoration: 'none',
       }}
     >
-      {logo_string}
+      {LOGO_STRING}
     </Typography>
   );
 }
