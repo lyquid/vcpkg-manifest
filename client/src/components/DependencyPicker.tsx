@@ -4,7 +4,7 @@ import { Dependency } from '../types'
 
 interface PickerParams {
   dependencies: Dependency[],
-  dependencies_list: Dependency[],
+  dependenciesList: Dependency[],
   handleChange: Function
 };
 
@@ -15,7 +15,7 @@ export default function DependencyPicker(props: PickerParams) {
   return(
     <Autocomplete
       multiple
-      options={props.dependencies_list}
+      options={props.dependenciesList}
       isOptionEqualToValue={(option, value) => option.name === value.name }
       filterSelectedOptions
       getOptionLabel={(option) => option.name}
