@@ -147,15 +147,13 @@ function MainForm(props: MainFormParams) {
         </fieldset>
       </Grid>}
 
-      <Box>
-        {(form_data.dependencies as Dependency[]).length > 0 &&
-          <DependenciesSection
-            dependencies={form_data.dependencies as Dependency[]}
-            generating={props.generating}
-            removeFunc={removeDependency}
-          />
-        }
-      </Box>
+      {(form_data.dependencies as Dependency[]).length > 0 && <Box>
+        <DependenciesSection
+          dependencies={form_data.dependencies as Dependency[]}
+          generating={props.generating}
+          removeFunc={removeDependency}
+        />
+      </Box>}
     </React.Fragment>
   );
 }
