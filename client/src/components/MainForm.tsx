@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useReducer, useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, Grid, Paper, styled } from '@mui/material';
 import { Dependency, VCPKGManifest } from '../types'
 // import BuiltinBaseline from './BuiltinBaseline';
 import ClearForm from './ClearForm';
@@ -24,6 +24,14 @@ const initialState: VCPKGManifest = {
   dependencies: []
   // builtinBaseline: ''
 };
+
+const FormItem = styled(Paper)(({ theme }) => ({
+  // backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  // ...theme.typography.body2,
+  padding: theme.spacing(1.5),
+  textAlign: 'center',
+  // color: theme.palette.text.secondary,
+}))
 
 function MainForm(props: MainFormParams) {
   const formReducer = (state: VCPKGManifest, action: any) => {
@@ -115,29 +123,29 @@ function MainForm(props: MainFormParams) {
   return(
     <React.Fragment>
       <FetchingBackdrop loading={loading}/>
-      {!loading && <Box component="form" sx={{ display: 'flex', flexDirection: 'column', mx: 'auto', maxWidth: '50em' }} autoComplete="on">
+      {!loading && <Grid component="form" sx={{ display: 'flex', flexDirection: 'column', mx: 'auto', maxWidth: '50em' }} autoComplete="on">
         <fieldset disabled={props.generating}>
-          <div>
+          <FormItem>
             <Name name={form_data.name} handleChange={handleChange}/>
-          </div>
-          <div>
+          </FormItem>
+          <FormItem>
             <Version version={form_data.version} handleChange={handleChange}/>
-          </div>
-          <div>
+          </FormItem>
+          <FormItem>
             <Description description={form_data.description} handleChange={handleChange}/>
-          </div>
-          {/* <div>
+          </FormItem>
+          {/* <FormItem>
             <BuiltinBaseline builtinBaseline={form_data.builtinBaseline} handleChange={handleChange}/>
-          </div> */}
-          <div>
+          </FormItem> */}
+          <FormItem>
             <DependencyPicker dependencies={form_data.dependencies as Dependency[]} dependencies_list={dependencies_list} handleChange={handleSelectChange}/>
-          </div>
-          <div>
+          </FormItem>
+          <FormItem>
             <GenerateFileButton generateFunc={() => props.generateFile(form_data)}/>
             <ClearForm clearFunc={clearForm}/>
-          </div>
+          </FormItem>
         </fieldset>
-      </Box>}
+      </Grid>}
 
       <Box>
         {(form_data.dependencies as Dependency[]).length > 0 &&
