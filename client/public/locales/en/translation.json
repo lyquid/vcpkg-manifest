@@ -12,7 +12,6 @@
     "description": "Description",
     "dependencies": "Dependencies",
     "fetching-data": "Fetching libraries' data from server",
-    "generate-file": "Generate vcpkg.json",
     "clear-form": "Clear fields"
   },
   "topBar": {

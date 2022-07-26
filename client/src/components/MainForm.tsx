@@ -10,6 +10,7 @@ import FetchingBackdrop from './FetchingBackdrop';
 import GenerateFileButton from './GenerateFileButton';
 import Name from './Name'
 import Version from './Version';
+import React from 'react';
 
 interface MainFormParams {
   generateFile: Function,
@@ -112,34 +113,31 @@ function MainForm(props: MainFormParams) {
   }
 
   return(
-    <Box>
-
-      <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '75ch' }}} autoComplete="on" alignItems="center" display="flex" justifyContent="center">
-        <FetchingBackdrop loading={loading}/>
-        {!loading && <Box>
-            <fieldset disabled={props.generating}>
-              <div>
-              <Name name={form_data.name} handleChange={handleChange}/>
-            </div>
-            <div>
-              <Version version={form_data.version} handleChange={handleChange}/>
-            </div>
-            <div>
-              <Description description={form_data.description} handleChange={handleChange}/>
-            </div>
-            {/* <div>
-              <BuiltinBaseline builtinBaseline={form_data.builtinBaseline} handleChange={handleChange}/>
-            </div> */}
-            <div>
-              <DependencyPicker dependencies={form_data.dependencies as Dependency[]} dependencies_list={dependencies_list} handleChange={handleSelectChange}/>
-            </div>
-            <div>
-              <GenerateFileButton generateFunc={() => props.generateFile(form_data)}/>
-              <ClearForm clearFunc={clearForm}/>
-            </div>
-          </fieldset>
-        </Box>}
-      </Box>
+    <React.Fragment>
+      <FetchingBackdrop loading={loading}/>
+      {!loading && <Box component="form" sx={{ display: 'flex', flexDirection: 'column', mx: 'auto', maxWidth: '50em' }} autoComplete="on">
+        <fieldset disabled={props.generating}>
+          <div>
+            <Name name={form_data.name} handleChange={handleChange}/>
+          </div>
+          <div>
+            <Version version={form_data.version} handleChange={handleChange}/>
+          </div>
+          <div>
+            <Description description={form_data.description} handleChange={handleChange}/>
+          </div>
+          {/* <div>
+            <BuiltinBaseline builtinBaseline={form_data.builtinBaseline} handleChange={handleChange}/>
+          </div> */}
+          <div>
+            <DependencyPicker dependencies={form_data.dependencies as Dependency[]} dependencies_list={dependencies_list} handleChange={handleSelectChange}/>
+          </div>
+          <div>
+            <GenerateFileButton generateFunc={() => props.generateFile(form_data)}/>
+            <ClearForm clearFunc={clearForm}/>
+          </div>
+        </fieldset>
+      </Box>}
 
       <Box>
         {(form_data.dependencies as Dependency[]).length > 0 &&
@@ -150,8 +148,7 @@ function MainForm(props: MainFormParams) {
           />
         }
       </Box>
-
-    </Box>
+    </React.Fragment>
   );
 }
 

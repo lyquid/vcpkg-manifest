@@ -24,6 +24,7 @@ export default function DependencyPicker(props: PickerParams) {
       renderInput={(params) => (
         <TextField {...params} variant="standard" label={t('mainForm.dependencies')}/>
       )}
+      fullWidth
     />
   );
 }

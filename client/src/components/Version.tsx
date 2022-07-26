@@ -14,6 +14,7 @@ export default function Version(props: VersionParams) {
       name="version"
       onChange={(event) => props.handleChange(event)}
       value={props.version}
+      fullWidth
     />
   );
 }

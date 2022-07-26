@@ -12,7 +12,6 @@
     "description": "Descripció",
     "dependencies": "Dependéncies",
     "fetching-data": "Obtenint les dades de les llibreries des del servidor",
-    "generate-file": "Generar vcpkg.json",
     "clear-form": "Esborra els camps"
   },
   "topBar": {

@@ -16,6 +16,7 @@ export default function AppDescription(props: DescriptionParams) {
       name="description"
       onChange={(event) => props.handleChange(event)}
       value={props.description}
+      fullWidth
     />
   );
 }
