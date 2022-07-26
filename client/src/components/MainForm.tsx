@@ -41,11 +41,11 @@ function MainForm(props: MainFormParams) {
     }
   }
 
-  const [form_data, setFormData] = useReducer(formReducer, initialState);
+  const [formData, setFormData] = useReducer(formReducer, initialState);
   // hook for fetched libraries
-  const [json_libraries, setJSONLibraries] = useState([]);
+  const [jsonLibraries, setJSONLibraries] = useState([]);
   // hook for the dependencies list
-  const [dependencies_list, setDependenciesList] = useState<Dependency[]>([]);
+  const [dependenciesList, setDependenciesList] = useState<Dependency[]>([]);
   // hook to tell the user that we are loading the data from the server
   const [loading, setLoading] = useState(true);
 
@@ -69,12 +69,12 @@ function MainForm(props: MainFormParams) {
         });
       }
 
-      json_libraries.forEach(inserter);
+      jsonLibraries.forEach(inserter);
       setDependenciesList(dep_list);
       setLoading(false);
     }
     fetchLibraries();
-  }, [json_libraries.length]);
+  }, [jsonLibraries.length]);
 
   const clearForm = (): void => {
     setFormData({
@@ -116,7 +116,7 @@ function MainForm(props: MainFormParams) {
   const removeDependency = (dependency: Dependency) => {
     setFormData({
       name: 'dependencies',
-      value: (form_data.dependencies as Dependency[]).filter(dep => dep !== dependency)
+      value: (formData.dependencies as Dependency[]).filter(dep => dep !== dependency)
     });
   }
 
@@ -126,36 +126,34 @@ function MainForm(props: MainFormParams) {
       {!loading && <Grid component="form" sx={{ display: 'flex', flexDirection: 'column', mx: 'auto', maxWidth: '50em' }} autoComplete="on">
         <fieldset disabled={props.generating}>
           <FormItem>
-            <Name name={form_data.name} handleChange={handleChange}/>
+            <Name name={formData.name} handleChange={handleChange}/>
           </FormItem>
           <FormItem>
-            <Version version={form_data.version} handleChange={handleChange}/>
+            <Version version={formData.version} handleChange={handleChange}/>
           </FormItem>
           <FormItem>
-            <Description description={form_data.description} handleChange={handleChange}/>
+            <Description description={formData.description} handleChange={handleChange}/>
           </FormItem>
           {/* <FormItem>
-            <BuiltinBaseline builtinBaseline={form_data.builtinBaseline} handleChange={handleChange}/>
+            <BuiltinBaseline builtinBaseline={formData.builtinBaseline} handleChange={handleChange}/>
           </FormItem> */}
           <FormItem>
-            <DependencyPicker dependencies={form_data.dependencies as Dependency[]} dependencies_list={dependencies_list} handleChange={handleSelectChange}/>
+            <DependencyPicker dependencies={formData.dependencies as Dependency[]} dependenciesList={dependenciesList} handleChange={handleSelectChange}/>
           </FormItem>
           <FormItem>
-            <GenerateFileButton generateFunc={() => props.generateFile(form_data)}/>
+            <GenerateFileButton generateFunc={() => props.generateFile(formData)}/>
             <ClearForm clearFunc={clearForm}/>
           </FormItem>
         </fieldset>
       </Grid>}
 
-      <Box>
-        {(form_data.dependencies as Dependency[]).length > 0 &&
-          <DependenciesSection
-            dependencies={form_data.dependencies as Dependency[]}
-            generating={props.generating}
-            removeFunc={removeDependency}
-          />
-        }
-      </Box>
+      {(formData.dependencies as Dependency[]).length > 0 && <Box>
+        <DependenciesSection
+          dependencies={formData.dependencies as Dependency[]}
+          generating={props.generating}
+          removeFunc={removeDependency}
+        />
+      </Box>}
     </React.Fragment>
   );
 }
