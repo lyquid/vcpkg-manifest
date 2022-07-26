@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useReducer, useState } from 'react';
 import { Box } from '@mui/material';
 import { Dependency, VCPKGManifest } from '../types'
@@ -10,7 +11,6 @@ import FetchingBackdrop from './FetchingBackdrop';
 import GenerateFileButton from './GenerateFileButton';
 import Name from './Name'
 import Version from './Version';
-import React from 'react';
 
 interface MainFormParams {
   generateFile: Function,
