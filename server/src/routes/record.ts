@@ -8,7 +8,7 @@ import { database } from "../db/conn";
 const recordRoutes = express.Router();
 
 // This help convert the id from string to ObjectId for the _id.
-const ObjectId = require("mongodb").ObjectId;
+// const ObjectId = require("mongodb").ObjectId;
 
 recordRoutes.route("/").get((req: express.Request, res: express.Response) => {
   res.sendFile(path.join(__dirname, '../build', 'index.html'));
