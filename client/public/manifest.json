@@ -1,6 +1,6 @@
 {
   "short_name": "vcpkg manifest",
-  "name": "vcpkg maniffest generation website",
+  "name": "Vcpkg manifest generation website",
   "icons": [
     {
       "src": "favicon.ico",
