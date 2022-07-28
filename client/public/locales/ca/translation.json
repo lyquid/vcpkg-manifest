@@ -11,7 +11,7 @@
     "version": "Versió",
     "description": "Descripció",
     "dependencies": "Dependéncies",
-    "fetching-data": "Obtenint les dades de les llibreries des del servidor",
+    "fetching-data": "Obtenint les dades de les llibreries del servidor",
     "clear-form": "Esborra els camps"
   },
   "topBar": {

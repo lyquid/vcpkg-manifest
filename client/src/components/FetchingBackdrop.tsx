@@ -1,4 +1,4 @@
-import { Box, Backdrop, CircularProgress } from "@mui/material";
+import { Box, Backdrop, CircularProgress, Stack } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 interface FetchingBackdropParams {
@@ -13,8 +13,10 @@ export default function FetchingBackdrop(props: FetchingBackdropParams) {
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={props.loading}
       >
-        <CircularProgress color="inherit"/>
-        {t('mainForm.fetching-data')}
+        <Stack spacing={2} alignItems="center">
+          <CircularProgress color="inherit"/>
+          {t('mainForm.fetching-data')}
+        </Stack>
       </Backdrop>
     </Box>
   );
