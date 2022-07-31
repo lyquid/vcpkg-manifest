@@ -5,9 +5,10 @@ interface GenerateParams {
   generateFunc: Function
 };
 
-export default function GenerateFileButton(props: GenerateParams) {
+export default function GenerateFileButton() {
   return(
     <Fab
+      type="submit"
       sx={{
         position: "fixed",
         bottom: (theme) => theme.spacing(2),
@@ -15,7 +16,7 @@ export default function GenerateFileButton(props: GenerateParams) {
       }}
       color="primary"
       aria-label="download file"
-      onClick={() => props.generateFunc()}>
+    >
       <DownloadIcon/>
     </Fab>
   )
