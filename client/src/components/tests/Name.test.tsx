@@ -14,10 +14,10 @@ afterEach(() => {
   container.remove();
 });
 
-it('renders the name with provided name', () => {
-  let mock_name = 'Holamanola';
-  act(() => {
-    render(<Name name={mock_name} handleChange={()=>{}} />, container);
-  });
-  // expect(container.getBy ).toBe(mock_name);
-});
+// it('renders the name with provided name', () => {
+//   let mock_name = 'Holamanola';
+//   act(() => {
+//     render(<Name name={mock_name} handleChange={()=>{}} />, container);
+//   });
+//   // expect(container.getBy ).toBe(mock_name);
+// });

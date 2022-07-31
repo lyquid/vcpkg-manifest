@@ -1,11 +1,13 @@
 import React from 'react';
-import { useEffect, useReducer, useState } from 'react';
-import { Box, Grid, Paper, styled } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { Autocomplete, Box, Grid, Paper, styled, TextField } from '@mui/material';
 import { Dependency, VCPKGManifest } from '../types'
 // import BuiltinBaseline from './BuiltinBaseline';
 import ClearForm from './ClearForm';
 import DependenciesSection from './DependenciesSection';
-import DependencyPicker from './DependencyPicker';
+// import DependencyPicker from './DependencyPicker';
 import Description from './Description';
 import FetchingBackdrop from './FetchingBackdrop';
 import GenerateFileButton from './GenerateFileButton';
@@ -17,14 +19,6 @@ interface MainFormParams {
   generating:   boolean
 };
 
-const initialState: VCPKGManifest = {
-  name: '',
-  version: '',
-  description: '',
-  dependencies: []
-  // builtinBaseline: ''
-};
-
 const FormItem = styled(Paper)(({ theme }) => ({
   // backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   // ...theme.typography.body2,
@@ -34,20 +28,18 @@ const FormItem = styled(Paper)(({ theme }) => ({
 }))
 
 function MainForm(props: MainFormParams) {
-  const formReducer = (state: VCPKGManifest, action: any) => {
-    return {
-      ...state,
-      [action.name]: action.value
-    }
-  }
-
-  const [formData, setFormData] = useReducer(formReducer, initialState);
-  // hook for fetched libraries
-  const [jsonLibraries, setJSONLibraries] = useState([]);
+  // react-form-hook's hooks
+  const { setValue, control, getValues, register, handleSubmit, formState: { errors } } = useForm<VCPKGManifest>();
+  // hook for triggering the display of the dependencies section
+  const [dependenciesCount, setDependenciesCount] = useState(0);
   // hook for the dependencies list
   const [dependenciesList, setDependenciesList] = useState<Dependency[]>([]);
+  // hook for fetched libraries
+  const [jsonLibraries, setJSONLibraries] = useState([]);
   // hook to tell the user that we are loading the data from the server
   const [loading, setLoading] = useState(true);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     async function fetchLibraries() {
@@ -77,79 +69,87 @@ function MainForm(props: MainFormParams) {
   }, [jsonLibraries.length]);
 
   const clearForm = (): void => {
-    setFormData({
-      name: 'name',
-      value: '',
-    });
-    setFormData({
-      name: 'version',
-      value: '',
-    });
-    setFormData({
-      name: 'description',
-      value: '',
-    });
-    setFormData({
-      name: 'dependencies',
-      value: [],
-    });
-    setFormData({
-      name: 'builtinBaseline',
-      value: '',
-    });
+    setValue('name', '');
+    setValue('version', '');
+    setValue('description', '');
+    setValue('dependencies', []);
+    setValue('builtinBaseline', '');
+    setDependenciesCount(0);
   }
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setFormData({
-      name: event.target.name,
-      value: event.target.value
-    });
-  }
-
-  const handleSelectChange = (event: React.SyntheticEvent, value: Dependency[]): void => {
-    setFormData({
-      name: 'dependencies',
-      value: value
-    });
-  }
+  const onSubmit: SubmitHandler<VCPKGManifest> = (data) => {props.generateFile(data);}
 
   const removeDependency = (dependency: Dependency) => {
-    setFormData({
-      name: 'dependencies',
-      value: (formData.dependencies as Dependency[]).filter(dep => dep !== dependency)
-    });
+    setValue(
+      'dependencies',
+      getValues('dependencies')!.filter(dep => dep !== dependency)
+    );
+    setDependenciesCount(getValues('dependencies')!.length);
   }
 
   return(
     <React.Fragment>
       <FetchingBackdrop loading={loading}/>
-      {!loading && <Grid component="form" sx={{ display: 'flex', flexDirection: 'column', mx: 'auto', maxWidth: '50em' }} autoComplete="on">
+      {!loading && <Grid component="form" onSubmit={handleSubmit(onSubmit)} sx={{ display: 'flex', flexDirection: 'column', mx: 'auto', maxWidth: '50em' }} autoComplete="off">
         <fieldset disabled={props.generating}>
           <FormItem>
-            <Name name={formData.name} handleChange={handleChange}/>
+            <Name register={register}/>
           </FormItem>
           <FormItem>
-            <Version version={formData.version} handleChange={handleChange}/>
+            <Version register={register}/>
           </FormItem>
           <FormItem>
-            <Description description={formData.description} handleChange={handleChange}/>
+            <Description register={register}/>
           </FormItem>
           {/* <FormItem>
             <BuiltinBaseline builtinBaseline={formData.builtinBaseline} handleChange={handleChange}/>
           </FormItem> */}
           <FormItem>
-            <DependencyPicker dependencies={formData.dependencies as Dependency[]} dependenciesList={dependenciesList} handleChange={handleSelectChange}/>
+            {/* <DependencyPicker
+              control={control}
+              dependenciesList={dependenciesList}
+            /> */}
+            <Controller
+              render={(props) => (
+                <Autocomplete
+                  multiple
+                  options={dependenciesList}
+                  isOptionEqualToValue={(option: Dependency, value: Dependency) => option.name === value.name }
+                  filterSelectedOptions
+                  getOptionLabel={(option: any) => option.name}
+                  value={props.field.value}
+                  onChange={(event, values) => {
+                    setValue("dependencies", values);
+                    setDependenciesCount(getValues('dependencies')!.length);
+                  }}
+                  renderInput={params => (
+                    <TextField
+                      {...params}
+                      label={t('mainForm.dependencies')}
+                      variant="standard"
+                      inputProps={{
+                        ...params.inputProps,
+                        autoComplete: "disabled"
+                      }}
+                    />
+                  )}
+                />
+              )}
+              name="dependencies"
+              control={control}
+              defaultValue={[]}
+            /> {/* end controller */}
           </FormItem>
           <FormItem>
-            <GenerateFileButton generateFunc={() => props.generateFile(formData)}/>
+            <GenerateFileButton/>
             <ClearForm clearFunc={clearForm}/>
           </FormItem>
         </fieldset>
       </Grid>}
 
-      {(formData.dependencies as Dependency[]).length > 0 && <Box>
+      {dependenciesCount > 0 && <Box>
         <DependenciesSection
-          dependencies={formData.dependencies as Dependency[]}
+          dependencies={getValues('dependencies')!}
           generating={props.generating}
           removeFunc={removeDependency}
         />
