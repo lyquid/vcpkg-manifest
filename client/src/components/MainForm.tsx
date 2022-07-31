@@ -1,13 +1,12 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { Autocomplete, Box, Grid, Paper, styled, TextField } from '@mui/material';
+import { useForm, SubmitHandler } from "react-hook-form";
+import { Box, Grid, Paper, styled } from '@mui/material';
 import { Dependency, VCPKGManifest } from '../types'
 // import BuiltinBaseline from './BuiltinBaseline';
 import ClearForm from './ClearForm';
 import DependenciesSection from './DependenciesSection';
-// import DependencyPicker from './DependencyPicker';
+import DependencyPicker from './DependencyPicker';
 import Description from './Description';
 import FetchingBackdrop from './FetchingBackdrop';
 import GenerateFileButton from './GenerateFileButton';
@@ -38,8 +37,6 @@ function MainForm(props: MainFormParams) {
   const [jsonLibraries, setJSONLibraries] = useState([]);
   // hook to tell the user that we are loading the data from the server
   const [loading, setLoading] = useState(true);
-
-  const { t } = useTranslation();
 
   useEffect(() => {
     async function fetchLibraries() {
@@ -77,6 +74,11 @@ function MainForm(props: MainFormParams) {
     setDependenciesCount(0);
   }
 
+  const dependencyPickerOnChange = (values: Dependency[]) => {
+    setValue("dependencies", values);
+    setDependenciesCount(getValues('dependencies')!.length);
+  }
+
   const onSubmit: SubmitHandler<VCPKGManifest> = (data) => {props.generateFile(data);}
 
   const removeDependency = (dependency: Dependency) => {
@@ -95,51 +97,27 @@ function MainForm(props: MainFormParams) {
           <FormItem>
             <Name register={register}/>
           </FormItem>
+
           <FormItem>
             <Version register={register}/>
           </FormItem>
+
           <FormItem>
             <Description register={register}/>
           </FormItem>
+
           {/* <FormItem>
             <BuiltinBaseline builtinBaseline={formData.builtinBaseline} handleChange={handleChange}/>
           </FormItem> */}
+
           <FormItem>
-            {/* <DependencyPicker
+            <DependencyPicker
               control={control}
               dependenciesList={dependenciesList}
-            /> */}
-            <Controller
-              render={(props) => (
-                <Autocomplete
-                  multiple
-                  options={dependenciesList}
-                  isOptionEqualToValue={(option: Dependency, value: Dependency) => option.name === value.name }
-                  filterSelectedOptions
-                  getOptionLabel={(option: any) => option.name}
-                  value={props.field.value}
-                  onChange={(event, values) => {
-                    setValue("dependencies", values);
-                    setDependenciesCount(getValues('dependencies')!.length);
-                  }}
-                  renderInput={params => (
-                    <TextField
-                      {...params}
-                      label={t('mainForm.dependencies')}
-                      variant="standard"
-                      inputProps={{
-                        ...params.inputProps,
-                        autoComplete: "disabled"
-                      }}
-                    />
-                  )}
-                />
-              )}
-              name="dependencies"
-              control={control}
-              defaultValue={[]}
-            /> {/* end controller */}
+              handleChange={dependencyPickerOnChange}
+            />
           </FormItem>
+
           <FormItem>
             <GenerateFileButton/>
             <ClearForm clearFunc={clearForm}/>
