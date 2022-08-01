@@ -10,7 +10,7 @@ export default function generateJSON(formData: VCPKGManifest) {
   }
   const finalData = {
     $schema:            'https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json',
-    name:               data.name.toLowerCase(),
+    name:               data.name,
     'version-string':   data.version,
     description:        data.description,
     dependencies:       dependencies,

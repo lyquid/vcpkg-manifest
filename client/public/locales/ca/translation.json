@@ -2,6 +2,11 @@
   "app": {
     "loading": "Carregant"
   },
+  "formErrors": {
+    "name-required": "El nom és obligatori.",
+    "name-pattern": "El nom només ha de constar de caràcters alfabètics ascii en minúscules, números i guions, i no ha de començar ni acabar amb un guió.",
+    "version-required": "La versió és necessària."
+  },
   "generatingAlert": {
     "info": "Generant vcpkg.json",
     "working": "Treballant"

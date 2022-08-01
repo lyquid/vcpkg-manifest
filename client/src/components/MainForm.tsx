@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 import { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Box, Grid, Paper, styled } from '@mui/material';
@@ -24,11 +24,11 @@ const FormItem = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1.5),
   textAlign: 'center',
   // color: theme.palette.text.secondary,
-}))
+}));
 
 function MainForm(props: MainFormParams) {
   // react-form-hook's hooks
-  const { setValue, control, getValues, register, handleSubmit, formState: { errors } } = useForm<VCPKGManifest>();
+  const { clearErrors, setValue, control, getValues, register, handleSubmit, formState: { errors } } = useForm<VCPKGManifest>();
   // hook for triggering the display of the dependencies section
   const [dependenciesCount, setDependenciesCount] = useState(0);
   // hook for the dependencies list
@@ -72,6 +72,7 @@ function MainForm(props: MainFormParams) {
     setValue('dependencies', []);
     setValue('builtinBaseline', '');
     setDependenciesCount(0);
+    clearErrors();
   }
 
   const dependencyPickerOnChange = (values: Dependency[]) => {
@@ -79,7 +80,7 @@ function MainForm(props: MainFormParams) {
     setDependenciesCount(getValues('dependencies')!.length);
   }
 
-  const onSubmit: SubmitHandler<VCPKGManifest> = (data) => {props.generateFile(data);}
+  const onSubmit: SubmitHandler<VCPKGManifest> = (data) => { props.generateFile(data); }
 
   const removeDependency = (dependency: Dependency) => {
     setValue(
@@ -90,16 +91,16 @@ function MainForm(props: MainFormParams) {
   }
 
   return(
-    <React.Fragment>
+    <Fragment>
       <FetchingBackdrop loading={loading}/>
       {!loading && <Grid component="form" onSubmit={handleSubmit(onSubmit)} sx={{ display: 'flex', flexDirection: 'column', mx: 'auto', maxWidth: '50em' }} autoComplete="off">
         <fieldset disabled={props.generating}>
           <FormItem>
-            <Name register={register}/>
+            <Name errors={errors} register={register}/>
           </FormItem>
 
           <FormItem>
-            <Version register={register}/>
+            <Version errors={errors} register={register}/>
           </FormItem>
 
           <FormItem>
@@ -132,7 +133,7 @@ function MainForm(props: MainFormParams) {
           removeFunc={removeDependency}
         />
       </Box>}
-    </React.Fragment>
+    </Fragment>
   );
 }
 

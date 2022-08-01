@@ -2,6 +2,11 @@
   "app": {
     "loading": "Wird geladen"
   },
+  "formErrors": {
+    "name-required": "Der Name ist erforderlich.",
+    "name-pattern": "Der Name darf nur aus ASCII-Kleinbuchstaben, Zahlen und Bindestrichen bestehen und darf nicht mit einem Bindestrich beginnen oder enden.",
+    "version-required": "Die Version ist erforderlich."
+  },
   "generatingAlert": {
     "info": "Generieren von vcpkg.json",
     "working": ""
