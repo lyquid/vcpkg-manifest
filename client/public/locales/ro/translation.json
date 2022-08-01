@@ -1,0 +1,25 @@
+{
+  "app": {
+    "loading": "Încărcare"
+  },
+  "formErrors": {
+    "name-required": "Numele este obligatoriu.",
+    "name-pattern": "Numele trebuie să fie format numai din caractere alfabetice ascii minuscule, numere și cratime și nu trebuie să înceapă și nici să se termine cu o cratimă.",
+    "version-required": "Este necesară versiunea."
+  },
+  "generatingAlert": {
+    "info": "Generarea vcpkg.json",
+    "working": "In proces"
+  },
+  "mainForm": {
+    "app-name": "Numele aplicatiei",
+    "version": "Versiune",
+    "description": "Descriere",
+    "dependencies": "Dependenţă",
+    "fetching-data": "Preluarea datelor bibliotecilor de pe server",
+    "clear-form": "Ștergeți câmpurile"
+  },
+  "topBar": {
+    "languages": "Limbi"
+  }
+}

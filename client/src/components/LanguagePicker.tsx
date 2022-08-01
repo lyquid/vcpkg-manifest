@@ -11,7 +11,8 @@ export default function LanguagePicker() {
     ca: { native_name: 'Català' },
     de: { native_name: 'Deutsch' },
     en: { native_name: 'English' },
-    es: { native_name: 'Español' }
+    es: { native_name: 'Español' },
+    ro: { native_name: 'Română' }
   };
 
   const [anchorElLang, setAnchorElLang] = useState<null | HTMLElement>(null);
