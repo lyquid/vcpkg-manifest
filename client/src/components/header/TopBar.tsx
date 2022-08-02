@@ -2,6 +2,7 @@ import { AppBar, Toolbar, Box } from '@mui/material';
 import TerminalIcon from '@mui/icons-material/Terminal';
 import LanguagePicker from './LanguagePicker';
 import { Logo } from './Logo';
+import GitHubIcon from './GitHubIcon';
 
 export default function TopBar() {
   return (
@@ -11,6 +12,7 @@ export default function TopBar() {
 
           <TerminalIcon sx={{ display: 'flex', mr: 1 }} />
           <Logo/>
+          <GitHubIcon/>
           <LanguagePicker/>
 
         </Toolbar>
