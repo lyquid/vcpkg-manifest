@@ -1,6 +1,6 @@
 import { List, ListItem, ListItemText, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Dependency } from '../types'
+import { Dependency } from '../../types'
 
 interface ListParams {
   dependencies: Dependency[],

@@ -1,6 +1,6 @@
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import { Logo, LOGO_STRING } from '../Logo';
+import { Logo, LOGO_STRING } from '../header/Logo';
 
 let container: HTMLDivElement;
 

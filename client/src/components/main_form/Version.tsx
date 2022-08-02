@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
 import { FieldErrorsImpl, DeepRequired } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { VCPKGManifest } from "../types";
+import { VCPKGManifest } from "../../types";
 
 interface VersionParams {
   errors: FieldErrorsImpl<DeepRequired<VCPKGManifest>>,
