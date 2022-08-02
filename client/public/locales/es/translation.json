@@ -13,11 +13,12 @@
   },
   "mainForm": {
     "app-name": "Nombre de la aplicación",
-    "version": "Versión",
+    "clear-form": "Reinicia los campos",
     "description": "Descripción",
     "dependencies": "Dependencias",
     "fetching-data": "Obteniendo los datos de las librerias desde el servidor",
-    "clear-form": "Reinicia los campos"
+    "generate-json": "Generar vcpkg.json",
+    "version": "Versión"
   },
   "topBar": {
     "languages": "Idiomas"

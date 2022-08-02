@@ -13,11 +13,12 @@
   },
   "mainForm": {
     "app-name": "Anwendungsname",
-    "version": "Ausführung",
+    "clear-form": "Leere Felder",
     "description": "Beschreibung",
     "dependencies": "Abhängigkeiten",
     "fetching-data": "Daten der Bibliotheken vom Server abrufen",
-    "clear-form": "Leere Felder"
+    "generate-json": "Generieren Sie vcpkg.json",
+    "version": "Ausführung"
   },
   "topBar": {
     "languages": "Sprachen"

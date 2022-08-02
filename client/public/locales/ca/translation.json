@@ -13,11 +13,12 @@
   },
   "mainForm": {
     "app-name": "Nom de l'aplicació",
-    "version": "Versió",
+    "clear-form": "Esborra els camps",
     "description": "Descripció",
     "dependencies": "Dependéncies",
     "fetching-data": "Obtenint les dades de les llibreries del servidor",
-    "clear-form": "Esborra els camps"
+    "generate-json": "Generar vcpkg.json",
+    "version": "Versió"
   },
   "topBar": {
     "languages": "Idiomes"

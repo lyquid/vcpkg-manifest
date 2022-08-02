@@ -15,5 +15,5 @@ export default function ClearForm(props: ClearParams) {
     >
       {t('mainForm.clear-form')}
     </Button>
-  )
+  );
 }
