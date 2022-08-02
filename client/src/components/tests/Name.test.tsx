@@ -1,6 +1,6 @@
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import Name from '../Name';
+import Name from '../main_form/Name';
 
 let container: HTMLDivElement;
 

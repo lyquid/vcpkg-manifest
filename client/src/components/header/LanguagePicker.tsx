@@ -4,8 +4,7 @@ import { Box, Tooltip, IconButton, Menu, MenuItem, Typography } from '@mui/mater
 import LanguageIcon from '@mui/icons-material/Language';
 
 export default function LanguagePicker() {
-  const { t } = useTranslation();
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const languages = {
     ca: { native_name: 'Català' },

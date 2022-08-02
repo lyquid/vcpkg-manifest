@@ -1,3 +1,4 @@
+import { ClearAll } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
@@ -13,7 +14,8 @@ export default function ClearForm(props: ClearParams) {
       color="error"
       onClick={() => props.clearFunc()}
     >
+      <ClearAll/>
       {t('mainForm.clear-form')}
     </Button>
-  )
+  );
 }

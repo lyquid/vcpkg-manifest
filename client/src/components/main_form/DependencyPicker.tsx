@@ -1,7 +1,7 @@
 import { Autocomplete, TextField } from '@mui/material';
 import { Controller, Control } from "react-hook-form";
 import { useTranslation } from 'react-i18next';
-import { Dependency, VCPKGManifest } from '../types'
+import { Dependency, VCPKGManifest } from '../../types'
 
 interface PickerParams {
   control: Control<VCPKGManifest, object>

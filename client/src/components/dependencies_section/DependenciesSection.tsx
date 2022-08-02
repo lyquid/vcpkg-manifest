@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { Dependency } from '../types'
+import { Dependency } from '../../types'
 import DependenciesList from "./DependenciesList";
 
 interface DependenciesSectionParams {

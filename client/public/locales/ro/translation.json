@@ -13,11 +13,12 @@
   },
   "mainForm": {
     "app-name": "Numele aplicatiei",
-    "version": "Versiune",
+    "clear-form": "Ștergeți câmpurile",
     "description": "Descriere",
     "dependencies": "Dependenţă",
     "fetching-data": "Preluarea datelor bibliotecilor de pe server",
-    "clear-form": "Ștergeți câmpurile"
+    "generate-json": "Generați vcpkg.json",
+    "version": "Versiune"
   },
   "topBar": {
     "languages": "Limbi"

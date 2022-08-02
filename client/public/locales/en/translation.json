@@ -13,11 +13,12 @@
   },
   "mainForm": {
     "app-name": "App name",
-    "version": "Version",
+    "clear-form": "Clear fields",
     "description": "Description",
     "dependencies": "Dependencies",
     "fetching-data": "Fetching libraries' data from server",
-    "clear-form": "Clear fields"
+    "generate-json": "Generate vcpkg.json",
+    "version": "Version"
   },
   "topBar": {
     "languages": "Languages"

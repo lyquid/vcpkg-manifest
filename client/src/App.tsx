@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import generateJSON from "./generateJSON";
 import GeneratingAlert from "./components/GeneratingAlert";
-import MainForm from "./components/MainForm";
-import TopBar from "./components/TopBar";
+import MainForm from "./components/main_form/MainForm";
+import TopBar from "./components/header/TopBar";
 import { VCPKGManifest } from "./types";
 
 const appTheme = createTheme({

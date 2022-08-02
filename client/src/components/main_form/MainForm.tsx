@@ -2,13 +2,13 @@ import { Fragment } from 'react';
 import { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Box, Grid, Paper, styled } from '@mui/material';
-import { Dependency, VCPKGManifest } from '../types'
+import { Dependency, VCPKGManifest } from '../../types'
 // import BuiltinBaseline from './BuiltinBaseline';
 import ClearForm from './ClearForm';
-import DependenciesSection from './DependenciesSection';
+import DependenciesSection from '../dependencies_section/DependenciesSection';
 import DependencyPicker from './DependencyPicker';
 import Description from './Description';
-import FetchingBackdrop from './FetchingBackdrop';
+import FetchingBackdrop from '../FetchingBackdrop';
 import GenerateFileButton from './GenerateFileButton';
 import Name from './Name'
 import Version from './Version';
