@@ -21,6 +21,7 @@
     "version": "Versiune"
   },
   "topBar": {
+    "github": "Vizitați pagina web GitHub",
     "languages": "Limbi"
   }
 }

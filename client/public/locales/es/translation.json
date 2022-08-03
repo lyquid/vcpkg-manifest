@@ -21,6 +21,7 @@
     "version": "Versión"
   },
   "topBar": {
+    "github": "Visita la página de GitHub",
     "languages": "Idiomas"
   }
 }
