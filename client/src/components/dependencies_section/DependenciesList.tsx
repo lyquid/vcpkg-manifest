@@ -1,6 +1,9 @@
-import { ListItem, ListItemText, IconButton, Paper, styled } from '@mui/material';
+import { IconButton, Card, CardHeader, CardContent, Typography, CardActions } from '@mui/material';
 import { Masonry } from '@mui/lab';
-import ClearIcon from '@mui/icons-material/Clear';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { useTranslation } from 'react-i18next';
 import { Dependency } from '../../types'
 
 interface ListParams {
@@ -8,26 +11,55 @@ interface ListParams {
   removeFunc:   Function
 };
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(0.5),
-  textAlign: 'justify',
-  color: theme.palette.text.secondary,
-}));
-
 export default function DependenciesList(props: ListParams) {
+  const { t } = useTranslation();
+
   const dependenciesItems = props.dependencies.map((dependency: Dependency) =>
-    <Item key={dependency.name}>
-      <ListItem secondaryAction={
-        <IconButton aria-label="delete" edge="end" onClick={() => props.removeFunc(dependency)}>
-          <ClearIcon/>
+    <Card key={dependency.name}>
+      <CardHeader
+        // avatar={
+        //   <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+        //     R
+        //   </Avatar>
+        // }
+        action={
+          <IconButton aria-label="options">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title={dependency.name}
+        subheader={t('dependencies.version') + ': ' + (dependency.version || t('dependencies.versionNA'))}
+      />
+
+      <CardContent>
+        <Typography color="text.secondary" paragraph variant="body2">
+          {dependency.description}
+        </Typography>
+      </CardContent>
+
+      <CardActions disableSpacing>
+        <IconButton
+          aria-label="visit website"
+          disabled={dependency.website === undefined}
+          href={dependency.website!}
+          rel="noopener"
+          target="_blank"
+        >
+          <OpenInNewIcon/>
         </IconButton>
-      }>
-        <ListItemText primary={dependency.name} secondary={dependency.description}/>
-      </ListItem>
-    </Item>
+
+        <IconButton
+          aria-label="remove dependency"
+          onClick={() => props.removeFunc(dependency)}
+          sx={{marginLeft: 'auto'}}
+        >
+          <DeleteIcon/>
+        </IconButton>
+
+      </CardActions>
+    </Card>
   );
+
   return(
     <Masonry
       columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 4}}

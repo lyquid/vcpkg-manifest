@@ -2,6 +2,10 @@
   "app": {
     "loading": "Cargando"
   },
+  "dependencies": {
+    "version": "Versión",
+    "versionNA": "No disponible"
+  },
   "formErrors": {
     "name-required": "El nombre es necesario.",
     "name-pattern": "El nombre solo debe constar de caracteres alfabéticos ascii en minúsculas, números y guiones, y no debe comenzar ni terminar con un guión.",

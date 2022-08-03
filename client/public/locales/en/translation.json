@@ -2,6 +2,10 @@
   "app": {
     "loading": "Loading"
   },
+  "dependencies": {
+    "version": "Version",
+    "versionNA": "Not available"
+  },
   "formErrors": {
     "name-required": "The name is required.",
     "name-pattern": "The name must only consist of lowercase ascii alphabetic characters, numbers, and hyphens, and it must not begin nor end with a hyphen.",

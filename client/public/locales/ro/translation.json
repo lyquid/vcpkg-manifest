@@ -2,6 +2,10 @@
   "app": {
     "loading": "Încărcare"
   },
+  "dependencies": {
+    "version": "Versiune  ",
+    "versionNA": "Nu e disponibil"
+  },
   "formErrors": {
     "name-required": "Numele este obligatoriu.",
     "name-pattern": "Numele trebuie să fie format numai din caractere alfabetice ascii minuscule, numere și cratime și nu trebuie să înceapă și nici să se termine cu o cratimă.",

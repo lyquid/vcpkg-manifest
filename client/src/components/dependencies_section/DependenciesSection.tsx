@@ -10,7 +10,7 @@ interface DependenciesSectionParams {
 
 export default function DependenciesSection(props: DependenciesSectionParams) {
   return(
-    <Box>
+    <Box sx={{ mx: 'auto', maxWidth: '120em' }}>
       <fieldset disabled={props.generating}>
         <DependenciesList
           dependencies={props.dependencies}

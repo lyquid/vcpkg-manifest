@@ -2,6 +2,10 @@
   "app": {
     "loading": "Wird geladen"
   },
+  "dependencies": {
+    "version": "Version",
+    "versionNA": "Nicht verfügbar"
+  },
   "formErrors": {
     "name-required": "Der Name ist erforderlich.",
     "name-pattern": "Der Name darf nur aus ASCII-Kleinbuchstaben, Zahlen und Bindestrichen bestehen und darf nicht mit einem Bindestrich beginnen oder enden.",
@@ -18,7 +22,7 @@
     "dependencies": "Abhängigkeiten",
     "fetching-data": "Daten der Bibliotheken vom Server abrufen",
     "generate-json": "Generieren Sie vcpkg.json",
-    "version": "Ausführung"
+    "version": "Version"
   },
   "topBar": {
     "github": "Besuchen Sie die GitHub-Webseite",
