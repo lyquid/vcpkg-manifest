@@ -2,6 +2,12 @@
   "app": {
     "loading": "Loading"
   },
+  "dependencies": {
+    "remove": "Remove dependency",
+    "version": "Version",
+    "versionNA": "Not available",
+    "visit-website": "Visit website"
+  },
   "formErrors": {
     "name-required": "The name is required.",
     "name-pattern": "The name must only consist of lowercase ascii alphabetic characters, numbers, and hyphens, and it must not begin nor end with a hyphen.",
@@ -21,6 +27,7 @@
     "version": "Version"
   },
   "topBar": {
+    "github": "Visit GitHub page",
     "languages": "Languages"
   }
 }

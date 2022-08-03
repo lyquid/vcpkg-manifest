@@ -1,6 +1,6 @@
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import Name from '../main_form/Name';
+import { Logo, LOGO_STRING } from '../components/header/Logo';
 
 let container: HTMLDivElement;
 
@@ -14,10 +14,9 @@ afterEach(() => {
   container.remove();
 });
 
-// it('renders the name with provided name', () => {
-//   let mock_name = 'Holamanola';
-//   act(() => {
-//     render(<Name name={mock_name} handleChange={()=>{}} />, container);
-//   });
-//   // expect(container.getBy ).toBe(mock_name);
-// });
+it('renders the logo with the appropiate string', () => {
+  act(() => {
+    render(<Logo/>, container);
+  });
+  expect(container.textContent).toBe(LOGO_STRING);
+});

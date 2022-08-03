@@ -54,7 +54,8 @@ function MainForm(props: MainFormParams) {
         dep_list.push({
           name:        lib.name,
           version:     lib['version-string'] || lib.version,
-          description: lib.description
+          description: lib.description,
+          website:     lib.homepage
         });
       }
 

@@ -2,6 +2,12 @@
   "app": {
     "loading": "Încărcare"
   },
+  "dependencies": {
+    "remove": "Eliminați dependența",
+    "version": "Versiune",
+    "versionNA": "Nu e disponibil",
+    "visit-website": "Vizitati site-ul"
+  },
   "formErrors": {
     "name-required": "Numele este obligatoriu.",
     "name-pattern": "Numele trebuie să fie format numai din caractere alfabetice ascii minuscule, numere și cratime și nu trebuie să înceapă și nici să se termine cu o cratimă.",
@@ -21,6 +27,7 @@
     "version": "Versiune"
   },
   "topBar": {
+    "github": "Vizitați pagina web GitHub",
     "languages": "Limbi"
   }
 }

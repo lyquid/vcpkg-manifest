@@ -1,7 +1,8 @@
 export type Dependency = {
   name:         string,
   version:      string,
-  description?: string
+  description?: string,
+  website?:     string
 };
 
 export function compareDependencies(a: Dependency, b: Dependency) {

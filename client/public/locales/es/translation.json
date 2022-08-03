@@ -2,6 +2,12 @@
   "app": {
     "loading": "Cargando"
   },
+  "dependencies": {
+    "remove": "Quitar dependencia",
+    "version": "Versión",
+    "versionNA": "No disponible",
+    "visit-website": "Visitar página web"
+  },
   "formErrors": {
     "name-required": "El nombre es necesario.",
     "name-pattern": "El nombre solo debe constar de caracteres alfabéticos ascii en minúsculas, números y guiones, y no debe comenzar ni terminar con un guión.",
@@ -21,6 +27,7 @@
     "version": "Versión"
   },
   "topBar": {
+    "github": "Visita la página de GitHub",
     "languages": "Idiomas"
   }
 }

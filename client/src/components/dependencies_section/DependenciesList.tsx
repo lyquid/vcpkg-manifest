@@ -1,6 +1,9 @@
-import { List, ListItem, ListItemText, IconButton } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { Card, CardHeader, CardContent, Typography } from '@mui/material';
+import { Masonry } from '@mui/lab';
+// import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { useTranslation } from 'react-i18next';
 import { Dependency } from '../../types'
+import DependencyActions from './DependencyActions';
 
 interface ListParams {
   dependencies: Dependency[],
@@ -8,15 +11,43 @@ interface ListParams {
 };
 
 export default function DependenciesList(props: ListParams) {
-  const dependenciesList = props.dependencies.map((dependency: Dependency) =>
-    <ListItem key={dependency.name} secondaryAction={
-      <IconButton aria-label="delete" edge="end" onClick={() => props.removeFunc(dependency)}>
-        <DeleteIcon/>
-      </IconButton>
-    }>
-      <ListItemText primary={dependency.name} secondary={dependency.description}/>
-      {/* {dependency.library}, {dependency.version || "default version"} */}
-    </ListItem>
+  const { t } = useTranslation();
+
+  const dependenciesItems = props.dependencies.map((dependency: Dependency) => {
+    return(
+      <Card key={dependency.name}>
+        <CardHeader
+          // avatar={
+          //   <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+          //     R
+          //   </Avatar>
+          // }
+          // action={
+          //   <IconButton aria-label="options">
+          //     <MoreVertIcon />
+          //   </IconButton>
+          // }
+          title={dependency.name}
+          subheader={t('dependencies.version') + ': ' + (dependency.version || t('dependencies.versionNA'))}
+        />
+
+        <CardContent>
+          <Typography color="text.secondary" paragraph variant="body2">
+            {dependency.description}
+          </Typography>
+        </CardContent>
+
+        <DependencyActions dependency={dependency} removeFunc={props.removeFunc} />
+      </Card>
+    );
+  });
+
+  return(
+    <Masonry
+      columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 4}}
+      spacing={1}
+    >
+      {dependenciesItems}
+    </Masonry>
   );
-  return(<List>{dependenciesList}</List>);
 }
