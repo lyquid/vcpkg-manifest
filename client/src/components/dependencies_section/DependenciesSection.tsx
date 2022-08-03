@@ -12,12 +12,10 @@ export default function DependenciesSection(props: DependenciesSectionParams) {
   return(
     <Box>
       <fieldset disabled={props.generating}>
-        <div>
-          <DependenciesList
-            dependencies={props.dependencies}
-            removeFunc={props.removeFunc}
-          />
-        </div>
+        <DependenciesList
+          dependencies={props.dependencies}
+          removeFunc={props.removeFunc}
+        />
       </fieldset>
     </Box>
   );
