@@ -3,7 +3,6 @@ import { Masonry } from '@mui/lab';
 import ClearIcon from '@mui/icons-material/Clear';
 import { Dependency } from '../../types'
 
-
 interface ListParams {
   dependencies: Dependency[],
   removeFunc:   Function
@@ -20,7 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function DependenciesList(props: ListParams) {
   const dependenciesItems = props.dependencies.map((dependency: Dependency) =>
     <Item key={dependency.name}>
-      <ListItem key={dependency.name} secondaryAction={
+      <ListItem secondaryAction={
         <IconButton aria-label="delete" edge="end" onClick={() => props.removeFunc(dependency)}>
           <ClearIcon/>
         </IconButton>
