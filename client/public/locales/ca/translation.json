@@ -3,8 +3,10 @@
     "loading": "Carregant"
   },
   "dependencies": {
+    "remove": "Elimina la dependéncia",
     "version": "Versió",
-    "versionNA": "No disponible"
+    "versionNA": "No disponible",
+    "visit-website": "Visiteu el lloc web"
   },
   "formErrors": {
     "name-required": "El nom és obligatori.",

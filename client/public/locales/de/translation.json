@@ -3,8 +3,10 @@
     "loading": "Wird geladen"
   },
   "dependencies": {
+    "remove": "Abhängigkeit entfernen",
     "version": "Version",
-    "versionNA": "Nicht verfügbar"
+    "versionNA": "Nicht verfügbar",
+    "visit-website": "Besuche die Website"
   },
   "formErrors": {
     "name-required": "Der Name ist erforderlich.",

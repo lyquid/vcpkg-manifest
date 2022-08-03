@@ -3,8 +3,10 @@
     "loading": "Încărcare"
   },
   "dependencies": {
-    "version": "Versiune  ",
-    "versionNA": "Nu e disponibil"
+    "remove": "Eliminați dependența",
+    "version": "Versiune",
+    "versionNA": "Nu e disponibil",
+    "visit-website": "Vizitati site-ul"
   },
   "formErrors": {
     "name-required": "Numele este obligatoriu.",
