@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Box, Grid, Paper, styled } from '@mui/material';
-import { Dependency, VCPKGManifest } from '../../types'
+import { compareDependencies, Dependency, VCPKGManifest } from '../../types'
 // import BuiltinBaseline from './BuiltinBaseline';
 import ClearForm from './ClearForm';
 import DependenciesSection from '../dependencies_section/DependenciesSection';
@@ -60,7 +60,7 @@ function MainForm(props: MainFormParams) {
       }
 
       jsonLibraries.forEach(inserter);
-      setDependenciesList(dep_list);
+      setDependenciesList(dep_list.sort(compareDependencies));
       setLoading(false);
     }
     fetchLibraries();

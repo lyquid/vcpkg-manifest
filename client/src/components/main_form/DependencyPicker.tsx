@@ -1,7 +1,7 @@
 import { Autocomplete, Chip, TextField } from '@mui/material';
 import { Controller, Control } from "react-hook-form";
 import { useTranslation } from 'react-i18next';
-import { Dependency, VCPKGManifest } from '../../types'
+import { compareDependencies, Dependency, VCPKGManifest } from '../../types'
 
 interface PickerParams {
   control: Control<VCPKGManifest, object>
@@ -40,7 +40,7 @@ export default function DependencyPicker(props: PickerParams) {
             />
           )}
           renderTags={(deps, getTagProps) => (
-            deps.map((dep, index) =>
+            deps.sort(compareDependencies).map((dep, index) =>
               <Chip
                 {...getTagProps({index})}
                 color="primary"
