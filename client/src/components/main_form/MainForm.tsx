@@ -20,10 +20,10 @@ interface MainFormParams {
 
 const FormItem = styled(Paper)(({ theme }) => ({
   // backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  // ...theme.typography.body2,
+  ...theme.typography.body2,
   padding: theme.spacing(1.5),
   textAlign: 'center',
-  // color: theme.palette.text.secondary,
+  color: theme.palette.text.secondary,
 }));
 
 function MainForm(props: MainFormParams) {
@@ -94,8 +94,8 @@ function MainForm(props: MainFormParams) {
   return(
     <Fragment>
       <FetchingBackdrop loading={loading}/>
-      {!loading && <Grid component="form" onSubmit={handleSubmit(onSubmit)} sx={{ display: 'flex', flexDirection: 'column', mx: 'auto', maxWidth: '50em' }} autoComplete="off">
-        <fieldset disabled={props.generating}>
+      <FormItem sx={{ maxWidth: '51em', mx: 'auto' }}>
+        {!loading && <Grid component="form" onSubmit={handleSubmit(onSubmit)} sx={{ display: 'flex', flexDirection: 'column', mx: 'auto', maxWidth: '50em' }} autoComplete="off">
           <FormItem>
             <Name errors={errors} register={register}/>
           </FormItem>
@@ -124,8 +124,8 @@ function MainForm(props: MainFormParams) {
             <GenerateFileButton/>
             <ClearForm clearFunc={clearForm}/>
           </FormItem>
-        </fieldset>
-      </Grid>}
+        </Grid>}
+      </FormItem>
 
       {dependenciesCount > 0 && <Box>
         <DependenciesSection

@@ -3,9 +3,10 @@ import TerminalIcon from '@mui/icons-material/Terminal';
 import LanguagePicker from './LanguagePicker';
 import { Logo } from './Logo';
 import GitHubIcon from './GitHubIcon';
+import ThemeSwitch from './ThemeSwitch';
 
 export default function TopBar() {
-  return (
+  return(
     <AppBar position="sticky">
       <Box sx={{ display: 'flex', mx: 'auto' }}>
         <Toolbar disableGutters>
@@ -14,6 +15,7 @@ export default function TopBar() {
           <Logo/>
           <GitHubIcon/>
           <LanguagePicker/>
+          <ThemeSwitch/>
 
         </Toolbar>
       </Box>

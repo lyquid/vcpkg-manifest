@@ -27,7 +27,9 @@
     "version": "Versiune"
   },
   "topBar": {
+    "dark-theme": "Tema întunecată",
     "github": "Vizitați pagina web GitHub",
-    "languages": "Limbi"
+    "languages": "Limbi",
+    "light-theme": "Tema ușoară"
   }
 }

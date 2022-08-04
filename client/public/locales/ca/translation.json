@@ -27,7 +27,9 @@
     "version": "Versió"
   },
   "topBar": {
+    "dark-theme": "Tema fosc",
     "github": "Visita la pàgina de GitHub",
-    "languages": "Idiomes"
+    "languages": "Idiomes",
+    "light-theme": "Tema clar"
   }
 }

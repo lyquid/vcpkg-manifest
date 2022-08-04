@@ -27,7 +27,9 @@
     "version": "Version"
   },
   "topBar": {
+    "dark-theme": "Dark theme",
     "github": "Visit GitHub page",
-    "languages": "Languages"
+    "languages": "Languages",
+    "light-theme": "Light theme"
   }
 }
