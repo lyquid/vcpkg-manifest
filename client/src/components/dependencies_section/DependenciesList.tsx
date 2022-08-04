@@ -2,7 +2,7 @@ import { Card, CardHeader, CardContent, Typography } from '@mui/material';
 import { Masonry } from '@mui/lab';
 // import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useTranslation } from 'react-i18next';
-import { Dependency } from '../../types'
+import { compareDependencies, Dependency } from '../../types'
 import DependencyActions from './DependencyActions';
 
 interface ListParams {
@@ -13,7 +13,7 @@ interface ListParams {
 export default function DependenciesList(props: ListParams) {
   const { t } = useTranslation();
 
-  const dependenciesItems = props.dependencies.map((dependency: Dependency) => {
+  const dependenciesItems = props.dependencies.sort(compareDependencies).map((dependency: Dependency) => {
     return(
       <Card key={dependency.name}>
         <CardHeader
