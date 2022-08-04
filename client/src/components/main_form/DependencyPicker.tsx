@@ -1,4 +1,4 @@
-import { Autocomplete, TextField } from '@mui/material';
+import { Autocomplete, Chip, TextField } from '@mui/material';
 import { Controller, Control } from "react-hook-form";
 import { useTranslation } from 'react-i18next';
 import { Dependency, VCPKGManifest } from '../../types'
@@ -19,7 +19,9 @@ export default function DependencyPicker(props: PickerParams) {
         <Autocomplete
           multiple
           options={props.dependenciesList}
-          isOptionEqualToValue={(option: Dependency, value: Dependency) => option.name === value.name }
+          isOptionEqualToValue={(option: Dependency, value: Dependency) =>
+            option.name === value.name
+          }
           filterSelectedOptions
           getOptionLabel={(option: any) => option.name}
           value={renderProps.field.value}
@@ -36,6 +38,15 @@ export default function DependencyPicker(props: PickerParams) {
                 autoComplete: "disabled"
               }}
             />
+          )}
+          renderTags={(deps, getTagProps) => (
+            deps.map((dep, index) =>
+              <Chip
+                {...getTagProps({index})}
+                color="primary"
+                label={dep.name}
+              />
+            )
           )}
         />
       )}

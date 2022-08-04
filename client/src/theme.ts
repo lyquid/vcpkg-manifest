@@ -1,5 +1,5 @@
 import { PaletteMode, ThemeOptions } from "@mui/material";
-import { amber, grey } from "@mui/material/colors";
+import { amber, blueGrey, deepOrange, grey, lightBlue } from "@mui/material/colors";
 
 declare module '@mui/material/styles' {
   interface Theme {
@@ -21,7 +21,20 @@ export const getThemeOptions = (mode: PaletteMode) => ({
     ...(mode === 'light'
       ? {
           // palette values for light mode
-          primary: amber,
+          background: {
+            default: blueGrey[50],
+            paper: blueGrey[100],
+          },
+          primary: {
+            main: lightBlue[400],
+            light: lightBlue[200],
+            dark: lightBlue[700]
+          },
+          secondary: {
+            main: deepOrange[400],
+            light: deepOrange[200],
+            dark: deepOrange[700]
+          },
           divider: amber[200],
           text: {
             primary: grey[900],

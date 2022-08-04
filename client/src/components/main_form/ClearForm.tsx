@@ -11,7 +11,7 @@ export default function ClearForm(props: ClearParams) {
   return(
     <Button
       variant="contained"
-      color="error"
+      color="secondary"
       onClick={() => props.clearFunc()}
     >
       <ClearAll/>

@@ -24,6 +24,7 @@ export default function Name(props: NameParams) {
   return(
     <TextField
       {...props.register("name", { required: true, pattern: /^[a-z0-9]+(-[a-z0-9]+)*(\.[a-z0-9]+(-[a-z0-9]+)*)*$/ })}
+      color="primary"
       error={props.errors.name !== undefined}
       fullWidth
       helperText={helperText()}
