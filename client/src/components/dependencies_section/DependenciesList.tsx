@@ -28,7 +28,7 @@ export default function DependenciesList(props: ListParams) {
           //   </IconButton>
           // }
           title={dependency.name}
-          subheader={t('dependencies.version') + ': ' + (dependency.version || t('dependencies.versionNA'))}
+          subheader={t('dependencies.version') + ': ' + (dependency.version || t('dependencies.version-na'))}
         />
 
         <CardContent>

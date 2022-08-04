@@ -5,7 +5,7 @@
   "dependencies": {
     "remove": "Elimina la dependéncia",
     "version": "Versió",
-    "versionNA": "No disponible",
+    "version-na": "No disponible",
     "visit-website": "Visiteu el lloc web"
   },
   "formErrors": {

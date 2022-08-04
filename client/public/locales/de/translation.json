@@ -5,7 +5,7 @@
   "dependencies": {
     "remove": "Abhängigkeit entfernen",
     "version": "Version",
-    "versionNA": "Nicht verfügbar",
+    "version-na": "Nicht verfügbar",
     "visit-website": "Besuche die Website"
   },
   "formErrors": {

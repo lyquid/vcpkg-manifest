@@ -5,7 +5,7 @@
   "dependencies": {
     "remove": "Eliminați dependența",
     "version": "Versiune",
-    "versionNA": "Nu e disponibil",
+    "version-na": "Nu e disponibil",
     "visit-website": "Vizitati site-ul"
   },
   "formErrors": {
