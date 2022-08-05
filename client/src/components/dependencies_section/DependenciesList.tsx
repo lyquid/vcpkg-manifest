@@ -32,7 +32,7 @@ export default function DependenciesList(props: ListParams) {
         />
 
         <CardContent>
-          <Typography color="text.secondary" paragraph variant="body2">
+          <Typography color="text" paragraph variant="body2">
             {dependency.description}
           </Typography>
         </CardContent>

@@ -91,4 +91,13 @@ export const getThemeOptions = (mode: PaletteMode) => ({
           divider: 'rgba(255, 255, 255, 0.12)'
         }),
   },
+  // components: {
+  //   MuiTooltip: {
+  //     styleOverrides: {
+  //       tooltip: {
+  //         backgroundColor: mode === 'light' ? lightBlue[600] : '#e1bee7'
+  //       }
+  //     }
+  //   }
+  // }
 });

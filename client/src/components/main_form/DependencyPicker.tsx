@@ -1,4 +1,5 @@
-import { Autocomplete, Chip, TextField } from '@mui/material';
+import { Autocomplete, Chip, TextField, Tooltip } from '@mui/material';
+import Zoom from '@mui/material/Zoom';
 import { Controller, Control } from "react-hook-form";
 import { useTranslation } from 'react-i18next';
 import { compareDependencies, Dependency, VCPKGManifest } from '../../types'
@@ -40,13 +41,20 @@ export default function DependencyPicker(props: PickerParams) {
             />
           )}
           renderTags={(deps, getTagProps) => (
-            deps.sort(compareDependencies).map((dep, index) =>
-              <Chip
-                {...getTagProps({index})}
-                color="primary"
-                label={dep.name}
-              />
-            )
+            deps.sort(compareDependencies).map((dep, index) => (
+              <Tooltip
+                arrow
+                key={dep.name}
+                title={dep.description ? dep.description : ''}
+                TransitionComponent={Zoom}
+              >
+                <Chip
+                  {...getTagProps({index})}
+                  color="primary"
+                  label={dep.name}
+                />
+              </Tooltip>
+            ))
           )}
         />
       )}
