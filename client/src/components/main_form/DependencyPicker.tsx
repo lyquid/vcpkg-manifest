@@ -1,3 +1,4 @@
+import { ThemeContext } from '@emotion/react';
 import { Autocomplete, Chip, TextField, Tooltip } from '@mui/material';
 import Zoom from '@mui/material/Zoom';
 import { Controller, Control } from "react-hook-form";
@@ -52,6 +53,9 @@ export default function DependencyPicker(props: PickerParams) {
                   {...getTagProps({index})}
                   color="primary"
                   label={dep.name}
+                  sx={ theme => ({
+                    '&:hover': { backgroundColor: theme.palette.primary.dark }
+                  })}
                 />
               </Tooltip>
             ))
