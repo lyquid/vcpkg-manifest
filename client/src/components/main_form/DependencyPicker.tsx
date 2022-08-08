@@ -1,7 +1,6 @@
-import { ThemeContext } from '@emotion/react';
 import { Autocomplete, Chip, TextField, Tooltip } from '@mui/material';
 import Zoom from '@mui/material/Zoom';
-import { Controller, Control } from "react-hook-form";
+import { Controller, Control } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { compareDependencies, Dependency, VCPKGManifest } from '../../types'
 
@@ -18,26 +17,24 @@ export default function DependencyPicker(props: PickerParams) {
   return (
     <Controller
       render={(renderProps) => (
-        <Autocomplete
-          multiple
-          options={props.dependenciesList}
+        <Autocomplete multiple
+          filterSelectedOptions
+          getOptionLabel={(option: Dependency) => option.name}
           isOptionEqualToValue={(option: Dependency, value: Dependency) =>
             option.name === value.name
           }
-          filterSelectedOptions
-          getOptionLabel={(option: any) => option.name}
-          value={renderProps.field.value}
           onChange={(event, values) => {
             props.handleChange(values);
           }}
+          options={props.dependenciesList}
           renderInput={params => (
             <TextField
               {...params}
               label={t('mainForm.dependencies')}
-              variant="standard"
+              variant='standard'
               inputProps={{
                 ...params.inputProps,
-                autoComplete: "disabled"
+                autoComplete: 'off'
               }}
             />
           )}
@@ -51,7 +48,7 @@ export default function DependencyPicker(props: PickerParams) {
               >
                 <Chip
                   {...getTagProps({index})}
-                  color="primary"
+                  color='primary'
                   label={dep.name}
                   sx={ theme => ({
                     '&:hover': { backgroundColor: theme.palette.primary.dark }
@@ -60,9 +57,10 @@ export default function DependencyPicker(props: PickerParams) {
               </Tooltip>
             ))
           )}
-        />
+          value={renderProps.field.value}
+        /> // end AutoComplete
       )}
-      name="dependencies"
+      name='dependencies'
       control={props.control}
       defaultValue={[]}
     />
