@@ -1,17 +1,17 @@
 import { Fragment } from 'react';
 import { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Box, Grid, Paper, styled } from '@mui/material';
+import { Grid, Paper, styled } from '@mui/material';
 import { compareDependencies, Dependency, VCPKGManifest } from '../../types'
 // import BuiltinBaseline from './BuiltinBaseline';
 import ClearForm from './ClearForm';
-import DependenciesSection from '../dependencies_section/DependenciesSection';
 import DependencyPicker from './DependencyPicker';
 import Description from './Description';
 import FetchingBackdrop from '../FetchingBackdrop';
 import GenerateFileButton from './GenerateFileButton';
 import Name from './Name'
 import Version from './Version';
+import DependenciesList from '../dependencies_section/DependenciesList';
 
 interface MainFormParams {
   generateFile: Function,
@@ -94,46 +94,67 @@ function MainForm(props: MainFormParams) {
   return(
     <Fragment>
       <FetchingBackdrop loading={loading}/>
-      <FormItem sx={{ maxWidth: '51em', mx: 'auto' }}>
-        {!loading && <Grid component="form" onSubmit={handleSubmit(onSubmit)} sx={{ display: 'flex', flexDirection: 'column', mx: 'auto', maxWidth: '50em' }} autoComplete="off">
-          <FormItem>
-            <Name errors={errors} register={register}/>
+      <Grid container /* big container for form and deps */
+        // border={4}
+        // borderColor='pink'
+        columns={12}
+        columnSpacing={1}
+        rowSpacing={2}
+      >
+        {!loading &&
+        <Grid item /* left container for the form */
+          autoComplete='off'
+          // border={4}
+          // borderColor='red'
+          component='form'
+          onSubmit={handleSubmit(onSubmit)}
+          width='35em'
+        >
+          <FormItem> {/* big paper for the form */}
+            <FormItem>
+              <Name errors={errors} register={register}/>
+            </FormItem>
+
+            <FormItem>
+              <Version errors={errors} register={register}/>
+            </FormItem>
+
+            <FormItem>
+              <Description register={register}/>
+            </FormItem>
+
+            {/* <FormItem>
+              <BuiltinBaseline builtinBaseline={formData.builtinBaseline} handleChange={handleChange}/>
+            </FormItem> */}
+
+            <FormItem>
+              <DependencyPicker
+                control={control}
+                dependenciesList={dependenciesList}
+                handleChange={dependencyPickerOnChange}
+              />
+            </FormItem>
+
+            <FormItem>
+              <GenerateFileButton/>
+              <ClearForm clearFunc={clearForm}/>
+            </FormItem>
           </FormItem>
+        </Grid>} {/* end left container for the form */}
 
-          <FormItem>
-            <Version errors={errors} register={register}/>
-          </FormItem>
-
-          <FormItem>
-            <Description register={register}/>
-          </FormItem>
-
-          {/* <FormItem>
-            <BuiltinBaseline builtinBaseline={formData.builtinBaseline} handleChange={handleChange}/>
-          </FormItem> */}
-
-          <FormItem>
-            <DependencyPicker
-              control={control}
-              dependenciesList={dependenciesList}
-              handleChange={dependencyPickerOnChange}
-            />
-          </FormItem>
-
-          <FormItem>
-            <GenerateFileButton/>
-            <ClearForm clearFunc={clearForm}/>
-          </FormItem>
-        </Grid>}
-      </FormItem>
-
-      {dependenciesCount > 0 && <Box>
-        <DependenciesSection
-          dependencies={getValues('dependencies')!}
-          generating={props.generating}
-          removeFunc={removeDependency}
-        />
-      </Box>}
+        {dependenciesCount > 0 &&
+        <Grid item /* right container for the dependencies */
+          // border={4}
+          // borderColor='blue'
+          width='75em'
+          xs={true}
+        >
+          <DependenciesList
+            dependencies={getValues('dependencies')!}
+            removeFunc={removeDependency}
+          />
+        </Grid>} {/* end right container for the dependencies */}
+      </Grid> {/* end big container */}
     </Fragment>
   );
 }

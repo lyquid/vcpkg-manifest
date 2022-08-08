@@ -7,7 +7,7 @@ import ThemeSwitch from './ThemeSwitch';
 
 export default function TopBar() {
   return(
-    <AppBar position="sticky">
+    <AppBar position="static">
       <Box sx={{ display: 'flex', mx: 'auto' }}>
         <Toolbar disableGutters>
 
