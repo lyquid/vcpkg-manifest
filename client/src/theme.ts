@@ -1,17 +1,26 @@
-import { PaletteMode, ThemeOptions } from "@mui/material";
+import { PaletteMode } from "@mui/material";
 import { amber, blueGrey, deepOrange, grey, lightBlue } from "@mui/material/colors";
 
 declare module '@mui/material/styles' {
-  interface Theme {
-    status: {
-      danger: string;
-    };
+  interface TypographyVariants {
+    libraryDescription: React.CSSProperties;
+    libraryTitle: React.CSSProperties;
+    libraryVersion: React.CSSProperties;
   }
   // allow configuration using `createTheme`
-  interface ThemeOptions {
-    status?: {
-      danger?: string;
-    };
+  interface TypographyVariantsOptions {
+    libraryDescription?: React.CSSProperties;
+    libraryTitle?: React.CSSProperties;
+    libraryVersion?: React.CSSProperties;
+  }
+}
+
+// Update the Typography's variant prop options
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides {
+    libraryDescription: true;
+    libraryTitle: true;
+    libraryVersion: true;
   }
 }
 
@@ -91,13 +100,22 @@ export const getThemeOptions = (mode: PaletteMode) => ({
           divider: 'rgba(255, 255, 255, 0.12)'
         }),
   },
-  // components: {
-  //   MuiTooltip: {
-  //     styleOverrides: {
-  //       tooltip: {
-  //         backgroundColor: mode === 'light' ? lightBlue[600] : '#e1bee7'
-  //       }
-  //     }
-  //   }
-  // }
+  typography: {
+    fontFamily: [
+      'Roboto',
+      'Roboto Condensed',
+      'Inconsolata'
+    ].join(','),
+    libraryDescription: {
+      fontFamily: 'Roboto Condensed'
+    },
+    libraryTitle: {
+      fontFamily: 'Inconsolata',
+      fontSize: '30px'
+    },
+    libraryVersion: {
+      fontFamily: 'Inconsolata',
+      fontSize: '15px'
+    }
+  }
 });

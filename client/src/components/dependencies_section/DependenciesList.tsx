@@ -1,6 +1,5 @@
 import { Card, CardHeader, CardContent, Typography } from '@mui/material';
 import { Masonry } from '@mui/lab';
-// import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useTranslation } from 'react-i18next';
 import { compareDependencies, Dependency } from '../../types'
 import DependencyActions from './DependencyActions';
@@ -17,22 +16,14 @@ export default function DependenciesList(props: ListParams) {
     return(
       <Card key={dependency.name}>
         <CardHeader
-          // avatar={
-          //   <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-          //     R
-          //   </Avatar>
-          // }
-          // action={
-          //   <IconButton aria-label="options">
-          //     <MoreVertIcon />
-          //   </IconButton>
-          // }
-          title={dependency.name}
           subheader={t('dependencies.version') + ': ' + (dependency.version || t('dependencies.version-na'))}
+          subheaderTypographyProps={{variant: 'libraryVersion'}}
+          title={dependency.name}
+          titleTypographyProps={{variant: 'libraryTitle'}}
         />
 
         <CardContent>
-          <Typography color="text" paragraph variant="body2">
+          <Typography paragraph variant='libraryDescription' >
             {dependency.description}
           </Typography>
         </CardContent>

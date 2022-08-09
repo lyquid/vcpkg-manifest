@@ -31,6 +31,9 @@
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
+    "@fontsource/inconsolata": "^4.5.7",
+    "@fontsource/roboto": "^4.5.8",
+    "@fontsource/roboto-condensed": "^4.5.9",
     "@mui/icons-material": "^5.8.4",
     "@mui/lab": "^5.0.0-alpha.93",
     "@mui/material": "^5.9.3",

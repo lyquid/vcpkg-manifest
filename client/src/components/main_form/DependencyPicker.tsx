@@ -14,7 +14,7 @@ export default function DependencyPicker(props: PickerParams) {
 
   const { t } = useTranslation();
 
-  return (
+  return(
     <Controller
       render={(renderProps) => (
         <Autocomplete multiple
@@ -31,7 +31,6 @@ export default function DependencyPicker(props: PickerParams) {
             <TextField
               {...params}
               label={t('mainForm.dependencies')}
-              variant='standard'
               inputProps={{
                 ...params.inputProps,
                 autoComplete: 'off'
