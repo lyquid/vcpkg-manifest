@@ -5,7 +5,7 @@ import '@fontsource/inconsolata/300.css';
 import '@fontsource/inconsolata/400.css';
 import '@fontsource/inconsolata/500.css';
 import '@fontsource/inconsolata/700.css';
-import "@fontsource/roboto";
+import "@fontsource/roboto-flex";
 import "@fontsource/roboto-condensed";
 import './i18n';
 import App from "./App";

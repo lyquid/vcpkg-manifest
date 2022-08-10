@@ -75,7 +75,7 @@ export const getThemeOptions = (mode: PaletteMode) => ({
   },
   typography: {
     fontFamily: [
-      'Roboto',
+      'Roboto Flex',
       'Roboto Condensed',
       'Inconsolata'
     ].join(','),
