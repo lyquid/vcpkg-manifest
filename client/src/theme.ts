@@ -1,17 +1,26 @@
-import { PaletteMode, ThemeOptions } from "@mui/material";
-import { amber, blueGrey, deepOrange, grey, lightBlue } from "@mui/material/colors";
+import { PaletteMode } from "@mui/material";
+import { amber, blueGrey, cyan, grey, orange } from "@mui/material/colors";
 
 declare module '@mui/material/styles' {
-  interface Theme {
-    status: {
-      danger: string;
-    };
+  interface TypographyVariants {
+    libraryDescription: React.CSSProperties;
+    libraryTitle: React.CSSProperties;
+    libraryVersion: React.CSSProperties;
   }
   // allow configuration using `createTheme`
-  interface ThemeOptions {
-    status?: {
-      danger?: string;
-    };
+  interface TypographyVariantsOptions {
+    libraryDescription?: React.CSSProperties;
+    libraryTitle?: React.CSSProperties;
+    libraryVersion?: React.CSSProperties;
+  }
+}
+
+// Update the Typography's variant prop options
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides {
+    libraryDescription: true;
+    libraryTitle: true;
+    libraryVersion: true;
   }
 }
 
@@ -22,82 +31,64 @@ export const getThemeOptions = (mode: PaletteMode) => ({
       ? {
           // palette values for light mode
           background: {
-            default: blueGrey[50],
-            paper: blueGrey[100],
+            default: blueGrey[100],
+            paper: blueGrey[50],
+          },
+          text: {
+            primary: grey[800],
+            secondary: grey[600],
           },
           primary: {
-            main: lightBlue[400],
-            light: lightBlue[200],
-            dark: lightBlue[700]
+            main: cyan[500],
+            light: cyan[200],
+            dark: cyan[700]
           },
           secondary: {
-            main: deepOrange[400],
-            light: deepOrange[200],
-            dark: deepOrange[700]
+            main: orange[500],
+            light: orange[200],
+            dark: orange[700]
           },
-          divider: amber[200],
-          text: {
-            primary: grey[900],
-            secondary: grey[800],
-          },
+          divider: orange[400],
         }
       : {
           // palette values for dark mode
           background: {
-            default: '#303030',
-            paper: '#424242',
+            default: blueGrey[800],
+            paper: blueGrey[700],
           },
           text: {
-            primary: '#fff',
-            secondary: 'rgba(255, 255, 255, 0.7)',
-            disabled: 'rgba(255, 255, 255, 0.5)'
+            primary: grey[200],
+            secondary: grey[400],
           },
           primary: {
-            main: '#e1bee7',
-            light: '#E7CBEB',
-            dark: '#9D85A1',
-            contrastText:'rgba(0, 0, 0, 0.87)'
+            main: cyan[500],
+            light: cyan[200],
+            dark: cyan[700]
           },
           secondary: {
-            main: '#32da5b',
-            light: '#5BE17B',
-            dark: '#23983F',
-            contrastText: 'rgba(0, 0, 0, 0.87)'
+            main: amber[500],
+            light: amber[200],
+            dark: amber[700]
           },
-          error: {
-            main: '#f44336',
-            light: '#e57373',
-            dark: '#d32f2f',
-            contrastText: '#fff'
-          },
-          warning: {
-            main: '#ff9800',
-            light: '#ffb74d',
-            dark: '#f57c00',
-            contrastText: 'rgba(0, 0, 0, 0.87)'
-          },
-          info: {
-            main: '#2196f3',
-            light: '#64b5f6',
-            dark: '#1976d2',
-            contrastText: '#fff'
-          },
-          success: {
-            main: '#4caf50',
-            light: '#81c784',
-            dark: '#388e3c',
-            contrastText: 'rgba(0, 0, 0, 0.87)'
-          },
-          divider: 'rgba(255, 255, 255, 0.12)'
-        }),
+          divider: amber[400]
+        })
   },
-  // components: {
-  //   MuiTooltip: {
-  //     styleOverrides: {
-  //       tooltip: {
-  //         backgroundColor: mode === 'light' ? lightBlue[600] : '#e1bee7'
-  //       }
-  //     }
-  //   }
-  // }
+  typography: {
+    fontFamily: [
+      'Roboto Flex',
+      'Roboto Condensed',
+      'Inconsolata'
+    ].join(','),
+    libraryDescription: {
+      fontFamily: 'Roboto Condensed'
+    },
+    libraryTitle: {
+      fontFamily: 'Inconsolata',
+      fontSize: '30px'
+    },
+    libraryVersion: {
+      fontFamily: 'Inconsolata',
+      fontSize: '15px'
+    }
+  }
 });
