@@ -50,7 +50,7 @@ export default function DependencyPicker(props: PickerParams) {
                   color='primary'
                   label={dep.name}
                   sx={ theme => ({
-                    '&:hover': { backgroundColor: theme.palette.primary.dark }
+                    '&:hover': { backgroundColor: theme.palette.secondary.main }
                   })}
                 />
               </Tooltip>
