@@ -1,6 +1,6 @@
 import { createContext, Suspense, useMemo, useState } from "react";
 import { useTranslation } from 'react-i18next';
-import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
+import { createTheme, CssBaseline, ThemeProvider, useMediaQuery } from '@mui/material';
 import generateJSON from './generateJSON';
 import GeneratingAlert from './components/GeneratingAlert';
 import MainForm from './components/main_form/MainForm';
@@ -37,7 +37,8 @@ const App = () => {
 };
 
 function ToggleColorMode() {
-  const [mode, setMode] = useState<'light' | 'dark'>('light');
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const [mode, setMode] = useState<'light' | 'dark'>(prefersDarkMode ? 'dark' : 'light');
   const colorMode = useMemo(() => ({
     toggleColorMode: () => {
       setMode((prevMode) => prevMode === 'light' ? 'dark' : 'light');
