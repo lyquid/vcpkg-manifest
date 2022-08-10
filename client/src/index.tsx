@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from "react-router-dom";
 import '@fontsource/inconsolata/300.css';
 import '@fontsource/inconsolata/400.css';
 import '@fontsource/inconsolata/500.css';
@@ -17,9 +16,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App/>
-    </BrowserRouter>
+    <App/>
   </React.StrictMode>
 );
 
