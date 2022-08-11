@@ -5,13 +5,14 @@ import { Grid, Paper, styled } from '@mui/material';
 import { compareDependencies, Dependency, VCPKGManifest } from '../../types'
 // import BuiltinBaseline from './BuiltinBaseline';
 import ClearForm from './ClearForm';
+import DependenciesList from '../dependencies_section/DependenciesList';
 import DependencyPicker from './DependencyPicker';
 import Description from './Description';
 import FetchingBackdrop from '../FetchingBackdrop';
 import GenerateFileButton from './GenerateFileButton';
 import Name from './Name'
+import ScrollTop from '../ScrollTop';
 import Version from './Version';
-import DependenciesList from '../dependencies_section/DependenciesList';
 
 interface MainFormParams {
   generateFile: Function,
@@ -19,7 +20,6 @@ interface MainFormParams {
 };
 
 const FormItem = styled(Paper)(({ theme }) => ({
-  // backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
   padding: theme.spacing(1.5),
   textAlign: 'center',
@@ -77,7 +77,7 @@ function MainForm(props: MainFormParams) {
   }
 
   const dependencyPickerOnChange = (values: Dependency[]) => {
-    setValue("dependencies", values);
+    setValue('dependencies', values);
     setDependenciesCount(getValues('dependencies')!.length);
   }
 
@@ -93,6 +93,7 @@ function MainForm(props: MainFormParams) {
 
   return(
     <Fragment>
+      <div id='back-to-top-anchor'></div>
       <FetchingBackdrop loading={loading}/>
       <Grid container /* big container for form and deps */
         // border={4}
@@ -155,6 +156,7 @@ function MainForm(props: MainFormParams) {
           />
         </Grid>} {/* end right container for the dependencies */}
       </Grid> {/* end big container */}
+      <ScrollTop/>
     </Fragment>
   );
 }
