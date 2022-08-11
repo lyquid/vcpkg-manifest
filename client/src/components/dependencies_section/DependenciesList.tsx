@@ -14,7 +14,15 @@ export default function DependenciesList(props: ListParams) {
 
   const dependenciesItems = props.dependencies.sort(compareDependencies).map((dependency: Dependency) => {
     return(
-      <Card key={dependency.name}>
+      <Card
+        key={dependency.name}
+        sx={ theme => ({
+          '&:hover': {
+            // backgroundColor: theme.palette.background.default,
+            transform: "scale3d(1.01, 1.01, 1)"
+          }
+        })}
+      >
         <CardHeader
           subheader={t('dependencies.version') + ': ' + (dependency.version || t('dependencies.version-na'))}
           subheaderTypographyProps={{variant: 'libraryVersion'}}
