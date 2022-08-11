@@ -16,6 +16,9 @@ export default function DependencyPicker(props: PickerParams) {
 
   return(
     <Controller
+      control={props.control}
+      defaultValue={[]}
+      name='dependencies'
       render={(renderProps) => (
         <Autocomplete multiple
           filterSelectedOptions
@@ -59,9 +62,6 @@ export default function DependencyPicker(props: PickerParams) {
           value={renderProps.field.value}
         /> // end AutoComplete
       )}
-      name='dependencies'
-      control={props.control}
-      defaultValue={[]}
     />
   );
 }
