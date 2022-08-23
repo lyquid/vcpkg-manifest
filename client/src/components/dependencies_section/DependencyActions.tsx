@@ -15,7 +15,8 @@ export default function DependencyActions(props: DependenciesActionsParams) {
     if (props.dependency.website === undefined) {
       return false;
     }
-    return props.dependency.website.includes('github.com') ? true : false;
+    const gitHubUrlString = 'https://github.com/';
+    return props.dependency.website.includes(gitHubUrlString) ? true : false;
   }
 
   const gitHubUrl = isGitHubUrl();
